@@ -5,6 +5,10 @@ import java.time.LocalTime;
 public class Pair {
     private boolean empty;
 
+    public boolean isEmpty() {
+        return empty;
+    }
+
     private int number;
     private LocalTime startTime;
     private String subject;
