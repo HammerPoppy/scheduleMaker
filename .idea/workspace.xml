@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f4a86c7-08f1-423b-8d9d-2b50fe0f2274" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Hammak/Day.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Hammak/Pair.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Hammak/Semester.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/Hammak/Week.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Hammak/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Hammak/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Hammak/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Hammak/Pair.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,11 +23,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pair.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Pair.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/Hammak/Pair.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+            <state relative-caret-position="255">
+              <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -57,7 +50,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Semester.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Semester.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/Hammak/Semester.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
@@ -89,6 +82,7 @@
         <option value="$PROJECT_DIR$/src/com/Hammak/Main.java" />
         <option value="$PROJECT_DIR$/src/com/Hammak/day.java" />
         <option value="$PROJECT_DIR$/src/com/Hammak/Day.java" />
+        <option value="$PROJECT_DIR$/src/com/Hammak/Pair.java" />
       </list>
     </option>
   </component>
@@ -133,10 +127,13 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunDashboard">
@@ -185,12 +182,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1522417177983</updated>
-      <workItem from="1522417181827" duration="579000" />
+      <workItem from="1522417181827" duration="1527000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="579000" />
+    <option name="totallyTimeSpent" value="1527000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -210,7 +207,7 @@
       <window_info anchor="right" id="Database" />
       <window_info id="Learn" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24962178" />
       <window_info id="UI Designer" />
       <window_info id="Favorites" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -233,13 +230,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Hammak/Pair.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Hammak/Day.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -258,6 +248,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Hammak/Pair.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
         </state>
       </provider>
     </entry>
