@@ -5,18 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Day {
-    public boolean isEmpty() {
-        return empty;
-    }
-
     private boolean empty;
-
     private LocalDate date;
-
-    public LocalDate getDate() {
-        return date;
-    }
-
     private DayOfWeek name;
     private ArrayList<Pair> pairs;
 
@@ -34,5 +24,21 @@ public class Day {
             }
         }
         return true;
+    }
+
+    public boolean isEmpty() {
+        return empty;
+    }
+
+    public DayOfWeek getName() {
+        return name;
+    }
+
+    public ArrayList<Pair> getPairs() {
+        return pairs;
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 }

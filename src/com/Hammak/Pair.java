@@ -4,11 +4,6 @@ import java.time.LocalTime;
 
 public class Pair {
     private boolean empty;
-
-    public boolean isEmpty() {
-        return empty;
-    }
-
     private int number;
     private LocalTime startTime;
     private String subject;
@@ -30,5 +25,33 @@ public class Pair {
         this.type = type;
         this.teacher = teacher;
         this.lectureHallNumber = lectureHallNumber;
+    }
+
+    public boolean isEmpty() {
+        return empty;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public char getType() {
+        return type;
+    }
+
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public int getLectureHallNumber() {
+        return lectureHallNumber;
     }
 }

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class Week {
     private boolean empty;
-
     private LocalDate firstDayDate;
     private ArrayList<Day> days;
 
@@ -22,5 +21,17 @@ public class Week {
             }
         }
         return true;
+    }
+
+    public boolean isEmpty() {
+        return empty;
+    }
+
+    public ArrayList<Day> getDays() {
+        return days;
+    }
+
+    public LocalDate getFirstDayDate() {
+        return firstDayDate;
     }
 }
