@@ -5,17 +5,26 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Day {
+    public boolean isEmpty() {
+        return empty;
+    }
+
     private boolean empty;
 
     private LocalDate date;
+
+    public LocalDate getDate() {
+        return date;
+    }
+
     private DayOfWeek name;
     private ArrayList<Pair> pairs;
 
-    public Day(LocalDate date, DayOfWeek name, ArrayList<Pair> pairs) {
+    public Day(LocalDate date, ArrayList<Pair> pairs) {
         this.date = date;
-        this.name = name;
+        this.name = date.getDayOfWeek();
         this.pairs = pairs;
-        empty = emptinessCheck();
+        this.empty = emptinessCheck();
     }
 
     private boolean emptinessCheck() {
