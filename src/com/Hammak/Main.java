@@ -15,5 +15,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         var tableHandler = new TableHandler(Files.readAllLines(Paths.get(args[0]),
                 Charset.forName(CHARSET)).subList(TABLE_START_LINE, TABLE_END_LINE));
+
+        Semester semester = TableHandler.getSemester();
     }
+
 }

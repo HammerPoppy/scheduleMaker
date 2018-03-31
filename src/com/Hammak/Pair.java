@@ -11,10 +11,14 @@ public class Pair {
     private String teacher;
     private int lectureHallNumber;
 
-    public Pair(int number, LocalTime startTime) {
-        this.empty = true;
+    public Pair(int number, char type) {
         this.number = number;
-        this.startTime = startTime;
+        this.type = type;
+    }
+
+    public Pair(int number) {
+        this.number = number;
+        this.empty = true;
     }
 
     public Pair(int number, LocalTime startTime, String subject, char type, String teacher, int lectureHallNumber) {
