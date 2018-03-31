@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f4a86c7-08f1-423b-8d9d-2b50fe0f2274" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/Hammak/Semester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Hammak/Semester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Hammak/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Hammak/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,9 +12,12 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="scheduleMaker" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/Hammak/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
@@ -85,7 +88,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Semester.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Semester.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/Hammak/Semester.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
@@ -119,12 +122,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/Hammak/Main.java" />
         <option value="$PROJECT_DIR$/src/com/Hammak/day.java" />
         <option value="$PROJECT_DIR$/src/com/Hammak/Week.java" />
         <option value="$PROJECT_DIR$/src/com/Hammak/Day.java" />
         <option value="$PROJECT_DIR$/src/com/Hammak/Pair.java" />
         <option value="$PROJECT_DIR$/src/com/Hammak/Semester.java" />
+        <option value="$PROJECT_DIR$/src/com/Hammak/Main.java" />
       </list>
     </option>
   </component>
@@ -225,12 +228,12 @@
       <option name="presentableId" value="Default" />
       <updated>1522417177983</updated>
       <workItem from="1522417181827" duration="4290000" />
-      <workItem from="1522502060244" duration="775000" />
+      <workItem from="1522502060244" duration="1085000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5065000" />
+    <option name="totallyTimeSpent" value="5375000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -246,13 +249,13 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.498366" visible="true" weight="0.25340393" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Learn" order="2" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Structure" order="1" sideWeight="0.501634" side_tool="true" weight="0.25340393" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24962178" />
       <window_info id="UI Designer" order="2" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Favorites" order="2" sideWeight="0.501634" side_tool="true" weight="0.25340393" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -345,13 +348,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Hammak/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Hammak/Week.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -417,6 +413,13 @@
             <element signature="e#544#545#0" expanded="true" />
             <element signature="e#572#573#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Hammak/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
