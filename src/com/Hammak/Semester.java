@@ -20,11 +20,19 @@ public class Semester {
         return true;
     }
 
+    public Week getWeek(int weekNumber) {
+        return weeks.get(weekNumber);
+    }
+
     public boolean isEmpty() {
         return empty;
     }
 
     public ArrayList<Week> getWeeks() {
         return weeks;
+    }
+
+    public int weeksAmount() {
+        return weeks.size();
     }
 }

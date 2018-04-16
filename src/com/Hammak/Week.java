@@ -23,6 +23,10 @@ public class Week {
         return true;
     }
 
+    public Day getDay(int dayNumber) {
+        return days.get(dayNumber);
+    }
+
     public boolean isEmpty() {
         return empty;
     }
@@ -33,5 +37,9 @@ public class Week {
 
     public LocalDate getFirstDayDate() {
         return firstDayDate;
+    }
+
+    public int daysAmount() {
+        return days.size();
     }
 }

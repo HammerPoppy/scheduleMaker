@@ -21,7 +21,7 @@ public class TableHandler {
         semester = getSemesterTable();
     }
 
-    public static Semester getSemester() {
+    public static Semester getUnfilledSemester() {
         return semester;
     }
 
@@ -69,7 +69,7 @@ public class TableHandler {
         //| 26.02 |.......|.......|.......|.......|.......|.......|
         //| 16.04 |ллL....|Lлл....|ПППП...|лLл....|лл.....|.......|
 
-        line = line.substring(9);
+        line = line.substring(9 + day * 8);
 
         for (int i = 0; i < PAIRS_NUMBER; i++) {
             //0123456789
@@ -78,9 +78,9 @@ public class TableHandler {
 
             Pair currentPair;
 
-            if (line.charAt(i) == '.'){
-                currentPair = new Pair(i);
-            } else{
+            if (line.charAt(i) == '.') {
+                currentPair = new Pair(i + 1);
+            } else {
                 currentPair = new Pair(i + 1, line.charAt(i));
             }
 

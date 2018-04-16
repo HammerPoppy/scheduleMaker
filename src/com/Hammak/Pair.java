@@ -43,8 +43,16 @@ public class Pair {
         return startTime;
     }
 
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
     public String getSubject() {
         return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public char getType() {
@@ -55,7 +63,15 @@ public class Pair {
         return teacher;
     }
 
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
+    }
+
     public int getLectureHallNumber() {
         return lectureHallNumber;
+    }
+
+    public void setLectureHallNumber(int lectureHallNumber) {
+        this.lectureHallNumber = lectureHallNumber;
     }
 }
