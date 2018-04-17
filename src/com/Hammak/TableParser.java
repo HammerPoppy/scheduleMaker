@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TableHandler {
+public class TableParser {
     private static final int DAYS_NUMBER = 6;
     private static final int PAIRS_NUMBER = 7;
 
@@ -16,7 +16,7 @@ public class TableHandler {
     private static Semester semester;
     private List<String> lines;
 
-    public TableHandler(List<String> lines) {
+    public TableParser(List<String> lines) {
         this.lines = lines;
         semester = getSemesterTable();
     }

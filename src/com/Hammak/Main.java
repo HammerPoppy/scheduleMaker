@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Main {
 
-    public static final int DETAILS_START_LINE = 26;
-    public static final int DETAILS_END_SHIFT = 4;
+    private static final int DETAILS_START_LINE = 26;
+    private static final int DETAILS_END_SHIFT = 4;
     private static final String CHARSET = "windows-1251";
     private static final int TABLE_START_LINE = 8;
     private static final int TABLE_END_LINE = 24;
@@ -17,13 +17,22 @@ public class Main {
     public static void main(String[] args) throws IOException {
         List<String> lines = Files.readAllLines(Paths.get(args[0]),
                 Charset.forName(CHARSET));
-        var tableHandler = new TableHandler(lines.subList(TABLE_START_LINE, TABLE_END_LINE));
-        Semester unfilledSemester = TableHandler.getUnfilledSemester();
+        var tableHandler = new TableParser(lines.subList(TABLE_START_LINE, TABLE_END_LINE));
+        Semester unfilledSemester = TableParser.getUnfilledSemester();
 
-        var detailsHandler = new DetailsHandler(lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT), unfilledSemester);
-        Semester semester = DetailsHandler.getSemester();
+        var detailsHandler = new DetailsParser(lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT), unfilledSemester);
+        Semester semester = DetailsParser.getSemester();
+
+        ExcelPrinter excelPrinter = new ExcelPrinter();
+        String filename = getFilename(args[0]);
+        excelPrinter.printSemester(semester, filename);
 
         System.out.println("Done!");
+    }
+
+    private static String getFilename(String arg) {
+        int dotIndex = arg.indexOf('.');
+        return arg.substring(0, dotIndex) + ".xlsx";
     }
 
 }
