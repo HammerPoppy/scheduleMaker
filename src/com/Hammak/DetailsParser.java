@@ -7,34 +7,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class DetailsParser {
+class DetailsParser {
 
-    public static final int ASSEMBLY_HALL_NUMBER = 403;
+    private static final int ASSEMBLY_HALL_NUMBER = 403;
     // МЕГА КОСТЫЛЬ (МНЕ ЛЕНЬ ОПРЕДЕЛЯТЬ ГОД ИЗ ФАЙЛА)
     // влияет на LocalDate каждого дня (в getCurrentDayDate()),
     // то есть день недели тоже, так что для каждого года надо перекомпилировать проги. сук, надо переделать
     private static final int CURRENT_YEAR = 2018;
     private static Semester semester;
-    ArrayList<Character> characters = new ArrayList<Character>() {{
-        add('1');
-        add('2');
-        add('3');
-        add('4');
-        add('5');
-        add('6');
-        add('7');
-        add('*');
-        add(' ');
-    }};
     private List<String> lines;
 
-    public DetailsParser(List<String> lines, Semester unfilledSemester) {
+    DetailsParser(List<String> lines, Semester unfilledSemester) {
         this.lines = lines;
         semester = unfilledSemester;
         fillSemester();
     }
 
-    public static Semester getSemester() {
+    static Semester getSemester() {
         return semester;
     }
 
@@ -71,7 +60,7 @@ public class DetailsParser {
         return subjectEndIndex;
     }
 
-    public Semester fillSemester() {
+    private void fillSemester() {
 
         replaceAllRussians();
 
@@ -115,12 +104,12 @@ public class DetailsParser {
                                 //    |ауд.213 (01.03)|ауд.205 (08.03-15.03)|ауд.212 (22.03-12.04)|
                                 //    |ауд.217 (19.04-26.04)
                                 ArrayList<SomeDataStructure> someDataStructures = parseHardPart(line);
-                                for (int j = 0; j < someDataStructures.size(); j++) {
+                                for (SomeDataStructure someDataStructure : someDataStructures) {
                                     fillPairs(pairNumber, startTime, subject, teacher,
-                                            someDataStructures.get(j).getLectureHallNumber(),
+                                            someDataStructure.getLectureHallNumber(),
                                             dayOfWeek,
-                                            someDataStructures.get(j).getStartDay(),
-                                            someDataStructures.get(j).getEndDay());
+                                            someDataStructure.getStartDay(),
+                                            someDataStructure.getEndDay());
                                 }
 
                                 i++;
@@ -135,7 +124,6 @@ public class DetailsParser {
             line = lines.get(i);
         }
 
-        return semester;
     }
 
     private void replaceAllRussians() {
@@ -256,8 +244,8 @@ public class DetailsParser {
         return weekDays.get(line);
     }
 
-    public void fillPairs(int pairNumber, LocalTime startTime, String subject, String teacher, int lectureHallNumber,
-                          DayOfWeek dayOfWeek, LocalDate startDay, LocalDate endDay) {
+    private void fillPairs(int pairNumber, LocalTime startTime, String subject, String teacher, int lectureHallNumber,
+                           DayOfWeek dayOfWeek, LocalDate startDay, LocalDate endDay) {
 
         for (int i = 0; i < semester.weeksAmount(); i++) {
             for (int j = 0; j < semester.getWeek(i).daysAmount(); j++) {
