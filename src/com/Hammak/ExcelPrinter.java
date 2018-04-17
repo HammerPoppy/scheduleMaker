@@ -11,15 +11,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class ExcelPrinter {
+class ExcelPrinter {
 
-    public static final int DAY_TITLE_COLUMN = 2;
-    public static final int ONE_SYMBOL_COLUMN_WIDTH = 750;
+    private static final int DAY_TITLE_COLUMN = 2;
+    private static final int ONE_SYMBOL_COLUMN_WIDTH = 750;
 
-    public ExcelPrinter() {
+    ExcelPrinter() {
     }
 
-    public void printSemester(Semester semester, String filename) throws IOException {
+    void printSemester(Semester semester, String filename) throws IOException {
         Workbook wb = new XSSFWorkbook();
 
         for (int i = 0; i < semester.weeksAmount(); i++) {
@@ -161,7 +161,6 @@ public class ExcelPrinter {
     private void createTimeCell(int pairIndex, Workbook wb, int dayIndex, int weekIndex, Semester semester, Row row) {
         Cell cell = row.createCell(1);
         // 09:00-10:20
-        StringBuilder stringBuilder = new StringBuilder();
         cell.setCellValue(String.format("%02d:%02d-%02d:%02d", semester.getWeek(weekIndex).getDay(dayIndex).getPair(pairIndex).getStartTime().getHour(),
                 semester.getWeek(weekIndex).getDay(dayIndex).getPair(pairIndex).getStartTime().getMinute(),
                 semester.getWeek(weekIndex).getDay(dayIndex).getPair(pairIndex).getStartTime().plusMinutes(80).getHour(),
@@ -216,7 +215,6 @@ public class ExcelPrinter {
     }
 
     private String getdayTitle(int dayIndex, int weekIndex, Semester semester) {
-        StringBuilder stringBuilder = new StringBuilder();
         return String.format("%s %02d.%02d", semester.getWeek(weekIndex).getDay(dayIndex).getStringName(),
                 semester.getWeek(weekIndex).getDay(dayIndex).getDate().getDayOfMonth(),
                 semester.getWeek(weekIndex).getDay(dayIndex).getDate().getMonthValue());

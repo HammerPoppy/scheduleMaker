@@ -68,4 +68,7 @@ public class Day {
         return pairs.size();
     }
 
+    public Pair getPair(int pairNumber) {
+        return pairs.get(pairNumber);
+    }
 }
