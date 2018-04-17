@@ -1,16 +1,13 @@
 package com.Hammak;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Week {
+class Week {
     private boolean empty;
-    private LocalDate firstDayDate;
     private ArrayList<Day> days;
 
-    public Week(ArrayList<Day> days) {
+    Week(ArrayList<Day> days) {
         this.days = days;
-        this.firstDayDate = days.get(0).getDate();
         this.empty = emptinessCheck();
     }
 
@@ -23,23 +20,15 @@ public class Week {
         return true;
     }
 
-    public Day getDay(int dayNumber) {
+    Day getDay(int dayNumber) {
         return days.get(dayNumber);
     }
 
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return empty;
     }
 
-    public ArrayList<Day> getDays() {
-        return days;
-    }
-
-    public LocalDate getFirstDayDate() {
-        return firstDayDate;
-    }
-
-    public int daysAmount() {
+    int daysAmount() {
         return days.size();
     }
 }

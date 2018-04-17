@@ -17,10 +17,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
         List<String> lines = Files.readAllLines(Paths.get(args[0]),
                 Charset.forName(CHARSET));
-        var tableHandler = new TableParser(lines.subList(TABLE_START_LINE, TABLE_END_LINE));
+        new TableParser(lines.subList(TABLE_START_LINE, TABLE_END_LINE));
         Semester unfilledSemester = TableParser.getUnfilledSemester();
 
-        var detailsHandler = new DetailsParser(lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT), unfilledSemester);
+        new DetailsParser(lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT), unfilledSemester);
         Semester semester = DetailsParser.getSemester();
 
         ExcelPrinter excelPrinter = new ExcelPrinter();

@@ -11,67 +11,57 @@ public class Pair {
     private String teacher;
     private int lectureHallNumber;
 
-    public Pair(int number, char type) {
+    Pair(int number, char type) {
         this.number = number;
         this.type = type;
     }
 
-    public Pair(int number) {
+    Pair(int number) {
         this.number = number;
         this.empty = true;
     }
 
-    public Pair(int number, LocalTime startTime, String subject, char type, String teacher, int lectureHallNumber) {
-        this.empty = false;
-        this.number = number;
-        this.startTime = startTime;
-        this.subject = subject;
-        this.type = type;
-        this.teacher = teacher;
-        this.lectureHallNumber = lectureHallNumber;
-    }
-
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return empty;
     }
 
-    public int getNumber() {
+    int getNumber() {
         return number;
     }
 
-    public LocalTime getStartTime() {
+    LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalTime startTime) {
+    void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public String getSubject() {
+    String getSubject() {
         return subject;
     }
 
-    public void setSubject(String subject) {
+    void setSubject(String subject) {
         this.subject = subject;
     }
 
-    public char getType() {
+    char getType() {
         return type;
     }
 
-    public String getTeacher() {
+    String getTeacher() {
         return teacher;
     }
 
-    public void setTeacher(String teacher) {
+    void setTeacher(String teacher) {
         this.teacher = teacher;
     }
 
-    public int getLectureHallNumber() {
+    int getLectureHallNumber() {
         return lectureHallNumber;
     }
 
-    public void setLectureHallNumber(int lectureHallNumber) {
+    void setLectureHallNumber(int lectureHallNumber) {
         this.lectureHallNumber = lectureHallNumber;
     }
 }
