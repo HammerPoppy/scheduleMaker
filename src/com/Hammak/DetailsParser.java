@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class DetailsHandler {
+public class DetailsParser {
 
     public static final int ASSEMBLY_HALL_NUMBER = 403;
     // МЕГА КОСТЫЛЬ (МНЕ ЛЕНЬ ОПРЕДЕЛЯТЬ ГОД ИЗ ФАЙЛА)
@@ -28,7 +28,7 @@ public class DetailsHandler {
     }};
     private List<String> lines;
 
-    public DetailsHandler(List<String> lines, Semester unfilledSemester) {
+    public DetailsParser(List<String> lines, Semester unfilledSemester) {
         this.lines = lines;
         semester = unfilledSemester;
         fillSemester();
@@ -172,7 +172,7 @@ public class DetailsHandler {
             // 012345678901234567890123456789
             // |ауд.213 (01.03)
             if (line.substring(5, 7).equals("АЗ")) {
-                someDataStructures.get(i).setLectureHallNumber(DetailsHandler.ASSEMBLY_HALL_NUMBER);
+                someDataStructures.get(i).setLectureHallNumber(DetailsParser.ASSEMBLY_HALL_NUMBER);
                 line = line.substring(9);
             } else {
                 someDataStructures.get(i).setLectureHallNumber(Integer.parseInt(line.substring(5, 8)));

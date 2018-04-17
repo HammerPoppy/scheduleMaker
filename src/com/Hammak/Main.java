@@ -17,11 +17,12 @@ public class Main {
     public static void main(String[] args) throws IOException {
         List<String> lines = Files.readAllLines(Paths.get(args[0]),
                 Charset.forName(CHARSET));
-        var tableHandler = new TableHandler(lines.subList(TABLE_START_LINE, TABLE_END_LINE));
-        Semester unfilledSemester = TableHandler.getUnfilledSemester();
+        var tableHandler = new TableParser(lines.subList(TABLE_START_LINE, TABLE_END_LINE));
+        Semester unfilledSemester = TableParser.getUnfilledSemester();
 
-        var detailsHandler = new DetailsHandler(lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT), unfilledSemester);
-        Semester semester = DetailsHandler.getSemester();
+        var detailsHandler = new DetailsParser(lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT), unfilledSemester);
+        Semester semester = DetailsParser.getSemester();
+
 
         System.out.println("Done!");
     }
