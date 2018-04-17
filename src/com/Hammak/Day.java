@@ -12,14 +12,14 @@ public class Day {
     private DayOfWeek name;
     private ArrayList<Pair> pairs;
 
-    public Day(LocalDate date, ArrayList<Pair> pairs) {
+    Day(LocalDate date, ArrayList<Pair> pairs) {
         this.date = date;
         this.name = date.getDayOfWeek();
         this.pairs = pairs;
         this.empty = emptinessCheck();
     }
 
-    public void fillPair(int pairNumber, LocalTime startTime, int lectureHallNumber, String subject, String teacher) {
+    void fillPair(int pairNumber, LocalTime startTime, int lectureHallNumber, String subject, String teacher) {
         pairs.get(pairNumber - 1).setStartTime(startTime);
         pairs.get(pairNumber - 1).setLectureHallNumber(lectureHallNumber);
         pairs.get(pairNumber - 1).setSubject(subject);
@@ -36,7 +36,7 @@ public class Day {
         return true;
     }
 
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return empty;
     }
 
@@ -44,7 +44,7 @@ public class Day {
         return name;
     }
 
-    public String getStringName() {
+    String getStringName() {
         HashMap<DayOfWeek, String> weekDays = new HashMap<>() {{
             put(DayOfWeek.MONDAY, "Понеділок");
             put(DayOfWeek.TUESDAY, "Вівторок");
@@ -60,15 +60,12 @@ public class Day {
         return pairs;
     }
 
-    public LocalDate getDate() {
+    LocalDate getDate() {
         return date;
     }
 
-    public int pairsAmount() {
+    int pairsAmount() {
         return pairs.size();
     }
 
-    public Pair getPair(int pairNumber) {
-        return pairs.get(pairNumber);
-    }
 }
