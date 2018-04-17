@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TableParser {
+class TableParser {
     private static final int DAYS_NUMBER = 6;
     private static final int PAIRS_NUMBER = 7;
 
@@ -16,30 +16,28 @@ public class TableParser {
     private static Semester semester;
     private List<String> lines;
 
-    public TableParser(List<String> lines) {
+    TableParser(List<String> lines) {
         this.lines = lines;
         semester = getSemesterTable();
     }
 
-    public static Semester getUnfilledSemester() {
+    static Semester getUnfilledSemester() {
         return semester;
     }
 
-    public Semester getSemesterTable() {
+    private Semester getSemesterTable() {
 
         ArrayList<Week> weeks = getWeeksTable();
 
-        var semester = new Semester(weeks);
-
-        return semester;
+        return new Semester(weeks);
     }
 
     private ArrayList<Week> getWeeksTable() {
 
         var weeks = new ArrayList<Week>();
 
-        for (int i = 0; i < lines.size(); i++) {
-            ArrayList<Day> days = getDaysTable(lines.get(i));
+        for (String line : lines) {
+            ArrayList<Day> days = getDaysTable(line);
 
             var currentWeek = new Week(days);
 
@@ -101,7 +99,6 @@ public class TableParser {
         monthNum = Integer.parseInt(line.substring(5, 7));
         dayNum = Integer.parseInt(line.substring(2, 4));
 
-        LocalDate currentDayDate = LocalDate.of(CURRENT_YEAR, monthNum, dayNum).plusDays(shift);
-        return currentDayDate;
+        return LocalDate.of(CURRENT_YEAR, monthNum, dayNum).plusDays(shift);
     }
 }
