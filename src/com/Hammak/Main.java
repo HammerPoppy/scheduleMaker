@@ -31,7 +31,7 @@ public class Main {
     }
 
     private static String getFilename(String arg) {
-        int dotIndex = arg.indexOf('.');
+        int dotIndex = arg.lastIndexOf('.');
         return arg.substring(0, dotIndex) + ".xlsx";
     }
 
