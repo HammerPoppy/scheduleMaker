@@ -14,7 +14,7 @@ class DetailsParser {
     // влияет на LocalDate каждого дня (в getCurrentDayDate()),
     // то есть день недели тоже, так что для каждого года надо перекомпилировать проги. сук, надо переделать
     private static final int CURRENT_YEAR = 2018;
-    private static Semester semester;
+    private Semester semester;
     private List<String> lines;
 
     DetailsParser(List<String> lines, Semester unfilledSemester) {
@@ -23,7 +23,7 @@ class DetailsParser {
         fillSemester();
     }
 
-    static Semester getSemester() {
+    Semester getSemester() {
         return semester;
     }
 
