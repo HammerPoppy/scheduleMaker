@@ -20,8 +20,8 @@ public class Main {
         new TableParser(lines.subList(TABLE_START_LINE, TABLE_END_LINE));
         Semester unfilledSemester = TableParser.getUnfilledSemester();
 
-        new DetailsParser(lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT), unfilledSemester);
-        Semester semester = DetailsParser.getSemester();
+        DetailsParser detailsParser = new DetailsParser(lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT), unfilledSemester);
+        Semester semester = detailsParser.getSemester();
 
         ExcelPrinter excelPrinter = new ExcelPrinter();
         String filename = getFilename(args[0]);
