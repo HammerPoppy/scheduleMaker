@@ -67,7 +67,7 @@ class TableParser {
         //| 26.02 |.......|.......|.......|.......|.......|.......|
         //| 16.04 |ллL....|Lлл....|ПППП...|лLл....|лл.....|.......|
 
-        line = line.substring(9 + day * 8);
+        line = line.substring(PAIRS_NUMBER + 2 + day * 8);
 
         for (int i = 0; i < PAIRS_NUMBER; i++) {
             //0123456789
