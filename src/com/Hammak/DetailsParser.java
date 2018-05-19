@@ -41,20 +41,6 @@ class DetailsParser {
         return blocksAmount;
     }
 
-    private static int getSubjectEndIndex(String line) {
-        int subjectEndIndex = -1;
-        boolean endFound = false;
-        int i = 2;
-        while (!endFound) {
-            if (line.charAt(i) == '(' && line.charAt(i + 2) == ')') {
-                subjectEndIndex = i - 1;
-                endFound = true;
-            }
-            i++;
-        }
-        return subjectEndIndex;
-    }
-
     private void fillSemester() {
 
         replaceAllRussians();
@@ -204,7 +190,7 @@ class DetailsParser {
 
         // 0123456789012345678901234567890123456789
         // * Корпоративні інформаційні системи (L) [доц. Сокульський]
-        int subjectEndIndex = getSubjectEndIndex(line);
+        int subjectEndIndex = line.lastIndexOf('(')-1;
 
         return line.substring(2, subjectEndIndex);
     }
