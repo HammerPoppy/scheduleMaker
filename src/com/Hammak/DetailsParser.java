@@ -227,14 +227,13 @@ class DetailsParser {
         // Понеділок
         // Вівторок
 
-        HashMap<String, DayOfWeek> weekDays = new HashMap<>() {{
-            put("Понеділок", DayOfWeek.MONDAY);
-            put("Вівторок", DayOfWeek.TUESDAY);
-            put("Середа", DayOfWeek.WEDNESDAY);
-            put("Четвер", DayOfWeek.THURSDAY);
-            put("П\"ятниця", DayOfWeek.FRIDAY);
-            put("Субота", DayOfWeek.SATURDAY);
-        }};
+        HashMap<String, DayOfWeek> weekDays = new HashMap<>();
+        weekDays.put("Понеділок", DayOfWeek.MONDAY);
+        weekDays.put("Вівторок", DayOfWeek.TUESDAY);
+        weekDays.put("Середа", DayOfWeek.WEDNESDAY);
+        weekDays.put("Четвер", DayOfWeek.THURSDAY);
+        weekDays.put("П\"ятниця", DayOfWeek.FRIDAY);
+        weekDays.put("Субота", DayOfWeek.SATURDAY);
 
         return weekDays.get(line);
     }
