@@ -33,12 +33,7 @@ class DetailsParser {
         int blocksAmount = 0;
 
         for (int i = 0; i < line.length(); i++) {
-            if (i == line.length() - 1) {
-                if (line.charAt(line.length() - 1) == '|') {
-                    return blocksAmount;
-                }
-            }
-            if (line.charAt(i) == '|') {
+            if (line.charAt(i) == '|' && i != line.length() - 1) {
                 blocksAmount++;
             }
         }
