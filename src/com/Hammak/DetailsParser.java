@@ -127,14 +127,12 @@ class DetailsParser {
 
     private ArrayList<SomeDataStructure> parseHardPart(String line) {
 
-        ArrayList<SomeDataStructure> someDataStructures = new ArrayList<>();
-
         line = line.substring(3);
         // 012345678901234567890123456789
         // |ауд.213 (01.03)|ауд.205 (08.03-15.03)|ауд.212 (22.03-12.04)|
         // |ауд.217 (19.04-26.04)
         int blocksAmount = getBlocksAmount(line);
-
+        ArrayList<SomeDataStructure> someDataStructures = new ArrayList<>(blocksAmount);
         for (int i = 0; i < blocksAmount; i++) {
             someDataStructures.add(new SomeDataStructure());
 
