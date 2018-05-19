@@ -215,7 +215,7 @@ class DetailsParser {
         // 1 пара - 9:00
         // 2 пара - 12:10
         int doubleDotIndex = line.indexOf(':');
-        int startTimeHours = Integer.parseInt(line.substring(9, doubleDotIndex));
+        int startTimeHours = Integer.parseInt(line.substring(doubleDotIndex - 2, doubleDotIndex).replace(" ",""));
         int startTimeMinutes = Integer.parseInt(line.substring(doubleDotIndex + 1));
 
         return LocalTime.of(startTimeHours, startTimeMinutes);
