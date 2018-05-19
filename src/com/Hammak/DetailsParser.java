@@ -179,11 +179,19 @@ class DetailsParser {
     private String parseTeacher(String line) {
 
         // 01234567890123456789
-        // * Корпоративні інформаційні системи (L) [доц. Сокульський]
-        int openingSquareBracketIndex = line.indexOf('[');
-        int closingSquareBracketIndex = line.indexOf(']');
-
-        return line.substring(openingSquareBracketIndex + 1, closingSquareBracketIndex);
+        // * Корпоративні інформаційні системи (L) [доц. Сокульський][ ще хтось ]
+        StringBuilder teacher = new StringBuilder("");
+        int openingSquareBracketIndex = 0;
+        int closingSquareBracketIndex = 0;
+        while(line.indexOf('[',openingSquareBracketIndex+1) != -1){
+            openingSquareBracketIndex = line.indexOf('[',openingSquareBracketIndex+1);
+            closingSquareBracketIndex = line.indexOf(']',closingSquareBracketIndex+1);
+            teacher.append(line.substring(openingSquareBracketIndex + 1, closingSquareBracketIndex));
+            if(line.indexOf('[',openingSquareBracketIndex+1) != -1){
+                teacher.append(" / ");
+            }
+        }
+        return teacher.toString();
     }
 
     private String parseSubject(String line) {
