@@ -14,6 +14,7 @@ class DetailsParser {
     // влияет на LocalDate каждого дня (в getCurrentDayDate()),
     // то есть день недели тоже, так что для каждого года надо перекомпилировать проги. сук, надо переделать
     private static final int CURRENT_YEAR = 2018;
+    private static final int PLACE_SCHEDULE_OFFSET = 3;
     private Semester semester;
     private List<String> lines;
 
@@ -79,7 +80,7 @@ class DetailsParser {
                             i++;
                             line = lines.get(i);
 
-                            while (line.charAt(3) == '|') {
+                            while (line.charAt(PLACE_SCHEDULE_OFFSET) == '|') {
 
                                 // 012345678901234567890123456789
                                 //    |ауд.213 (01.03)|ауд.205 (08.03-15.03)|ауд.212 (22.03-12.04)|
@@ -127,7 +128,7 @@ class DetailsParser {
 
     private ArrayList<SomeDataStructure> parseHardPart(String line) {
 
-        line = line.substring(3);
+        line = line.substring(PLACE_SCHEDULE_OFFSET);
         // 012345678901234567890123456789
         // |ауд.213 (01.03)|ауд.205 (08.03-15.03)|ауд.212 (22.03-12.04)|
         // |ауд.217 (19.04-26.04)
