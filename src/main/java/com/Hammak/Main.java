@@ -21,7 +21,7 @@ public class Main {
         Semester unfilledSemester = TableParser.getUnfilledSemester();
 
         DetailsParser detailsParser = new DetailsParser(lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT), unfilledSemester);
-        Semester semester = detailsParser.getSemester();
+        Semester semester == detailsParser.getSemester();
 
         ExcelPrinter excelPrinter = new ExcelPrinter();
         String filename = getFilename(args[0]);
