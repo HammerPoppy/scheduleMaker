@@ -234,7 +234,7 @@ class DetailsParser {
     private void fillPairs(int pairNumber, LocalTime startTime, String subject, String teacher, int lectureHallNumber,
                            DayOfWeek dayOfWeek, LocalDate startDay, LocalDate endDay) {
 
-        for (int i = 0; i < semester.weeksAmount(); i++) {
+        for (int i = 0; i < semester.getWeeksAmount(); i++) {
             for (int j = 0; j < semester.getWeek(i).daysAmount(); j++) {
                 if (semester.getWeek(i).getDay(j).getDate().isAfter(startDay.minusDays(1))) {
 

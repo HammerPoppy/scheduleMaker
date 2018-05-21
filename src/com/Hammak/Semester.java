@@ -13,7 +13,7 @@ class Semester {
         return weeks.get(weekNumber);
     }
 
-    int weeksAmount() {
+    int getWeeksAmount() {
         return weeks.size();
     }
 }
