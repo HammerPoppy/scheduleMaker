@@ -45,14 +45,13 @@ public class Day {
     }
 
     String getStringName() {
-        HashMap<DayOfWeek, String> weekDays = new HashMap<>() {{
-            put(DayOfWeek.MONDAY, "Понеділок");
-            put(DayOfWeek.TUESDAY, "Вівторок");
-            put(DayOfWeek.WEDNESDAY, "Середа");
-            put(DayOfWeek.THURSDAY, "Четвер");
-            put(DayOfWeek.FRIDAY, "П'ятниця");
-            put(DayOfWeek.SATURDAY, "Субота");
-        }};
+        HashMap<DayOfWeek, String> weekDays = new HashMap<>();
+        weekDays.put(DayOfWeek.MONDAY, "Понеділок");
+        weekDays.put(DayOfWeek.TUESDAY, "Вівторок");
+        weekDays.put(DayOfWeek.WEDNESDAY, "Середа");
+        weekDays.put(DayOfWeek.THURSDAY, "Четвер");
+        weekDays.put(DayOfWeek.FRIDAY, "П'ятниця");
+        weekDays.put(DayOfWeek.SATURDAY, "Субота");
         return weekDays.get(name);
     }
 
