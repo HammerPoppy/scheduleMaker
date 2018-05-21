@@ -64,7 +64,7 @@ class DetailsParser {
                         // 1 пара - 9:00
                         // 2 пара - 12:10
                         int pairNumber = Integer.parseInt(line.substring(0, 1));
-                        LocalTime startTime = parseStartTime(line);
+                        LocalTime startTime = parseStartTime(line, pairNumber);
 
                         i++;
                         line = lines.get(i);
@@ -109,7 +109,9 @@ class DetailsParser {
     }
 
     private void replaceAllRussians() {
+        String line;
         for (int i = 0; i < lines.size(); i++) {
+            line = lines.get(i);
             if (lines.get(i).charAt(0) == '*') {
                 boolean flag = false;
                 int j = 2;
@@ -202,17 +204,27 @@ class DetailsParser {
         return line.substring(2, subjectEndIndex);
     }
 
-    private LocalTime parseStartTime(String line) {
+    private LocalTime parseStartTime(String line, int pairNumber) {
 
         // 0123456789
         // 1 пара - 9:00
         // 2 пара - 12:10
-        int doubleDotIndex = line.indexOf(':');
-        int startTimeHours = Integer.parseInt(line.substring(doubleDotIndex - 2, doubleDotIndex).replace(" ",""));
-        int startTimeMinutes = Integer.parseInt(line.substring(doubleDotIndex + 1));
+        if (pairNumber == 6) {
+            // TODO return 6th pair startTime
+            return null;
+        }
+        if (pairNumber == 7) {
+            // TODO return 7th pair startTime
+            return null;
+        } else {
+            int doubleDotIndex = line.indexOf(':');
+            int startTimeHours = Integer.parseInt(line.substring(doubleDotIndex - 2, doubleDotIndex).replace(" ",""));
+            int startTimeMinutes = Integer.parseInt(line.substring(doubleDotIndex + 1));
 
-        return LocalTime.of(startTimeHours, startTimeMinutes);
+            return LocalTime.of(startTimeHours, startTimeMinutes);
+        }
     }
+
 
     private DayOfWeek parseDayOfWeek(String line) {
 
