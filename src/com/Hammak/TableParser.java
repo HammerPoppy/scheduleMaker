@@ -34,12 +34,12 @@ class TableParser {
 
     private ArrayList<Week> getWeeksTable() {
 
-        var weeks = new ArrayList<Week>();
+        ArrayList<Week> weeks = new ArrayList<>();
 
         for (String line : lines) {
             ArrayList<Day> days = getDaysTable(line);
 
-            var currentWeek = new Week(days);
+            Week currentWeek = new Week(days);
 
             weeks.add(currentWeek);
         }
@@ -48,12 +48,12 @@ class TableParser {
 
     private ArrayList<Day> getDaysTable(String line) {
 
-        var days = new ArrayList<Day>();
+        ArrayList<Day> days = new ArrayList<>();
 
         for (int j = 0; j < DAYS_NUMBER; j++) {
             ArrayList<Pair> pairs = getPairsTable(line, j);
 
-            var currentDay = new Day(getCurrentDayDate(line, j), pairs);
+            Day currentDay = new Day(getCurrentDayDate(line, j), pairs);
 
             days.add(currentDay);
         }
@@ -67,7 +67,7 @@ class TableParser {
         //| 26.02 |.......|.......|.......|.......|.......|.......|
         //| 16.04 |ллL....|Lлл....|ПППП...|лLл....|лл.....|.......|
 
-        line = line.substring(9 + day * 8);
+        line = line.substring(PAIRS_NUMBER + 2 + day * 8);
 
         for (int i = 0; i < PAIRS_NUMBER; i++) {
             //0123456789

@@ -14,7 +14,8 @@ class DetailsParser {
     // влияет на LocalDate каждого дня (в getCurrentDayDate()),
     // то есть день недели тоже, так что для каждого года надо перекомпилировать проги. сук, надо переделать
     private static final int CURRENT_YEAR = 2018;
-    private static Semester semester;
+    private static final int PLACE_SCHEDULE_OFFSET = 3;
+    private Semester semester;
     private List<String> lines;
 
     DetailsParser(List<String> lines, Semester unfilledSemester) {
@@ -23,7 +24,7 @@ class DetailsParser {
         fillSemester();
     }
 
-    static Semester getSemester() {
+    Semester getSemester() {
         return semester;
     }
 
@@ -33,31 +34,12 @@ class DetailsParser {
         int blocksAmount = 0;
 
         for (int i = 0; i < line.length(); i++) {
-            if (i == line.length() - 1) {
-                if (line.charAt(line.length() - 1) == '|') {
-                    return blocksAmount;
-                }
-            }
-            if (line.charAt(i) == '|') {
+            if (line.charAt(i) == '|' && i != line.length() - 1) {
                 blocksAmount++;
             }
         }
 
         return blocksAmount;
-    }
-
-    private static int getSubjectEndIndex(String line) {
-        int subjectEndIndex = -1;
-        boolean endFound = false;
-        int i = 2;
-        while (!endFound) {
-            if (line.charAt(i) == '(' && line.charAt(i + 2) == ')') {
-                subjectEndIndex = i - 1;
-                endFound = true;
-            }
-            i++;
-        }
-        return subjectEndIndex;
     }
 
     private void fillSemester() {
@@ -98,7 +80,7 @@ class DetailsParser {
                             i++;
                             line = lines.get(i);
 
-                            while (line.charAt(3) == '|') {
+                            while (line.charAt(PLACE_SCHEDULE_OFFSET) == '|') {
 
                                 // 012345678901234567890123456789
                                 //    |ауд.213 (01.03)|ауд.205 (08.03-15.03)|ауд.212 (22.03-12.04)|
@@ -127,7 +109,9 @@ class DetailsParser {
     }
 
     private void replaceAllRussians() {
+        String line;
         for (int i = 0; i < lines.size(); i++) {
+            line = lines.get(i);
             if (lines.get(i).charAt(0) == '*') {
                 boolean flag = false;
                 int j = 2;
@@ -146,14 +130,12 @@ class DetailsParser {
 
     private ArrayList<SomeDataStructure> parseHardPart(String line) {
 
-        ArrayList<SomeDataStructure> someDataStructures = new ArrayList<>();
-
-        line = line.substring(3);
+        line = line.substring(PLACE_SCHEDULE_OFFSET);
         // 012345678901234567890123456789
         // |ауд.213 (01.03)|ауд.205 (08.03-15.03)|ауд.212 (22.03-12.04)|
         // |ауд.217 (19.04-26.04)
         int blocksAmount = getBlocksAmount(line);
-
+        ArrayList<SomeDataStructure> someDataStructures = new ArrayList<>(blocksAmount);
         for (int i = 0; i < blocksAmount; i++) {
             someDataStructures.add(new SomeDataStructure());
 
@@ -198,18 +180,26 @@ class DetailsParser {
     private String parseTeacher(String line) {
 
         // 01234567890123456789
-        // * Корпоративні інформаційні системи (L) [доц. Сокульський]
-        int openingSquareBracketIndex = line.indexOf('[');
-        int closingSquareBracketIndex = line.indexOf(']');
-
-        return line.substring(openingSquareBracketIndex + 1, closingSquareBracketIndex);
+        // * Корпоративні інформаційні системи (L) [доц. Сокульський][ ще хтось ]
+        StringBuilder teacher = new StringBuilder("");
+        int openingSquareBracketIndex = 0;
+        int closingSquareBracketIndex = 0;
+        while(line.indexOf('[',openingSquareBracketIndex+1) != -1){
+            openingSquareBracketIndex = line.indexOf('[',openingSquareBracketIndex+1);
+            closingSquareBracketIndex = line.indexOf(']',closingSquareBracketIndex+1);
+            teacher.append(line.substring(openingSquareBracketIndex + 1, closingSquareBracketIndex));
+            if(line.indexOf('[',openingSquareBracketIndex+1) != -1){
+                teacher.append(" / ");
+            }
+        }
+        return teacher.toString();
     }
 
     private String parseSubject(String line) {
 
         // 0123456789012345678901234567890123456789
         // * Корпоративні інформаційні системи (L) [доц. Сокульський]
-        int subjectEndIndex = getSubjectEndIndex(line);
+        int subjectEndIndex = line.lastIndexOf('(')-1;
 
         return line.substring(2, subjectEndIndex);
     }
@@ -228,12 +218,13 @@ class DetailsParser {
             return null;
         } else {
             int doubleDotIndex = line.indexOf(':');
-            int startTimeHours = Integer.parseInt(line.substring(9, doubleDotIndex));
+            int startTimeHours = Integer.parseInt(line.substring(doubleDotIndex - 2, doubleDotIndex).replace(" ",""));
             int startTimeMinutes = Integer.parseInt(line.substring(doubleDotIndex + 1));
+
             return LocalTime.of(startTimeHours, startTimeMinutes);
         }
-
     }
+
 
     private DayOfWeek parseDayOfWeek(String line) {
 
@@ -241,14 +232,13 @@ class DetailsParser {
         // Понеділок
         // Вівторок
 
-        HashMap<String, DayOfWeek> weekDays = new HashMap<>() {{
-            put("Понеділок", DayOfWeek.MONDAY);
-            put("Вівторок", DayOfWeek.TUESDAY);
-            put("Середа", DayOfWeek.WEDNESDAY);
-            put("Четвер", DayOfWeek.THURSDAY);
-            put("П\"ятниця", DayOfWeek.FRIDAY);
-            put("Субота", DayOfWeek.SATURDAY);
-        }};
+        HashMap<String, DayOfWeek> weekDays = new HashMap<>();
+        weekDays.put("Понеділок", DayOfWeek.MONDAY);
+        weekDays.put("Вівторок", DayOfWeek.TUESDAY);
+        weekDays.put("Середа", DayOfWeek.WEDNESDAY);
+        weekDays.put("Четвер", DayOfWeek.THURSDAY);
+        weekDays.put("П\"ятниця", DayOfWeek.FRIDAY);
+        weekDays.put("Субота", DayOfWeek.SATURDAY);
 
         return weekDays.get(line);
     }
@@ -256,7 +246,7 @@ class DetailsParser {
     private void fillPairs(int pairNumber, LocalTime startTime, String subject, String teacher, int lectureHallNumber,
                            DayOfWeek dayOfWeek, LocalDate startDay, LocalDate endDay) {
 
-        for (int i = 0; i < semester.weeksAmount(); i++) {
+        for (int i = 0; i < semester.getWeeksAmount(); i++) {
             for (int j = 0; j < semester.getWeek(i).daysAmount(); j++) {
                 if (semester.getWeek(i).getDay(j).getDate().isAfter(startDay.minusDays(1))) {
 

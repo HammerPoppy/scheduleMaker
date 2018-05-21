@@ -22,7 +22,7 @@ class ExcelPrinter {
     void printSemester(Semester semester, String filename) throws IOException {
         Workbook wb = new XSSFWorkbook();
 
-        for (int i = 0; i < semester.weeksAmount(); i++) {
+        for (int i = 0; i < semester.getWeeksAmount(); i++) {
             if (!semester.getWeek(i).isEmpty()) {
                 printWeek(i, wb, semester);
             }
