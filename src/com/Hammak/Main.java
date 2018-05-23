@@ -17,11 +17,11 @@ public class Main {
     public static void main(String[] args) throws IOException {
         List<String> lines = Files.readAllLines(Paths.get(args[0]),
                 Charset.forName(CHARSET));
-        new TableParser(lines.subList(TABLE_START_LINE, TABLE_END_LINE));
-        Semester unfilledSemester = TableParser.getUnfilledSemester();
+        
+        Semester semester = TableParser.getUnfilledSemester(lines.subList(TABLE_START_LINE, TABLE_END_LINE));
 
-        DetailsParser detailsParser = new DetailsParser(lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT), unfilledSemester);
-        Semester semester = detailsParser.getSemester();
+        DetailsParser detailsParser = new DetailsParser(lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT), semester);
+        semester = detailsParser.getSemester();
 
         ExcelPrinter excelPrinter = new ExcelPrinter();
         String filename = getFilename(args[0]);
