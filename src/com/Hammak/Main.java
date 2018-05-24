@@ -1,37 +1,25 @@
 package com.Hammak;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 
-public class Main {
-
-    private static final int DETAILS_START_LINE = 26;
-    private static final int DETAILS_END_SHIFT = 4;
-    private static final String CHARSET = "windows-1251";
-    private static final int TABLE_START_LINE = 8;
-    private static final int TABLE_END_LINE = 24;
+public class Main extends Application {
 
     public static void main(String[] args) throws IOException {
-        List<String> lines = Files.readAllLines(Paths.get(args[0]),
-                Charset.forName(CHARSET));
-
-        Semester semester = TableParser.getUnfilledSemester(lines.subList(TABLE_START_LINE, TABLE_END_LINE));
-
-        semester = DetailsParser.fillSemester(semester, lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT));
-
-        ExcelPrinter excelPrinter = new ExcelPrinter();
-        String filename = getFilename(args[0]);
-        excelPrinter.printSemester(semester, filename);
-
-        System.out.println("Done!");
+        launch(args);
     }
 
-    private static String getFilename(String arg) {
-        int dotIndex = arg.lastIndexOf('.');
-        return arg.substring(0, dotIndex) + ".xlsx";
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+        primaryStage.setTitle("scheduleMaker");
+        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.show();
     }
 
 }
