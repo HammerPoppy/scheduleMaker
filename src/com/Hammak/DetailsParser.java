@@ -34,8 +34,6 @@ class DetailsParser {
 
     public static Semester fillSemester(Semester semester,List<String> lines) {
 
-        replaceAllRussians(lines);
-
         int i = 0;
 
         String line = lines.get(i);
@@ -98,27 +96,7 @@ class DetailsParser {
         return semester;
 
     }
-
-    private static void replaceAllRussians(List<String> lines) {
-        String line;
-        for (int i = 0; i < lines.size(); i++) {
-            line = lines.get(i);
-            if (lines.get(i).charAt(0) == '*') {
-                boolean flag = false;
-                int j = 2;
-                while (!flag) {
-                    if (lines.get(i).charAt(j) == '(' && lines.get(i).charAt(j + 2) == ')') {
-                        String newLine = lines.get(i).substring(0, j) + "(A" + lines.get(i).substring(j + 2, lines.get(i).length());
-                        lines.remove(i);
-                        lines.add(i, newLine);
-                        flag = true;
-                    }
-                    j++;
-                }
-            }
-        }
-    }
-
+    
     private static ArrayList<SomeDataStructure> parseHardPart(String line) {
 
         line = line.substring(PLACE_SCHEDULE_OFFSET);
