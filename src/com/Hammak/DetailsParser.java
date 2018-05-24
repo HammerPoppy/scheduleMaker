@@ -15,8 +15,12 @@ class DetailsParser {
     // то есть день недели тоже, так что для каждого года надо перекомпилировать проги. сук, надо переделать
     private static final int CURRENT_YEAR = 2018;
     private static final int PLACE_SCHEDULE_OFFSET = 3;
-    private Semester semesterd;
-    private List<String> linesd;
+    private static final LocalTime PAIR_6_START_TIME;
+    private static final LocalTime PAIR_7_START_TIME;
+    static{
+        PAIR_6_START_TIME = LocalTime.of(16, 40);
+        PAIR_7_START_TIME = LocalTime.of(18, 10);
+    }
 
     private static int getBlocksAmount(String line) {
 
@@ -179,12 +183,10 @@ class DetailsParser {
         // 1 пара - 9:00
         // 2 пара - 12:10
         if (pairNumber == 6) {
-            // TODO return 6th pair startTime
-            return null;
+            return PAIR_6_START_TIME;
         }
         if (pairNumber == 7) {
-            // TODO return 7th pair startTime
-            return null;
+            return PAIR_7_START_TIME;
         } else {
             int doubleDotIndex = line.indexOf(':');
             int startTimeHours = Integer.parseInt(line.substring(doubleDotIndex - 2, doubleDotIndex).replace(" ",""));
