@@ -15,18 +15,8 @@ class DetailsParser {
     // то есть день недели тоже, так что для каждого года надо перекомпилировать проги. сук, надо переделать
     private static final int CURRENT_YEAR = 2018;
     private static final int PLACE_SCHEDULE_OFFSET = 3;
-    private Semester semester;
-    private List<String> lines;
-
-    DetailsParser(List<String> lines, Semester unfilledSemester) {
-        this.lines = lines;
-        semester = unfilledSemester;
-        fillSemester();
-    }
-
-    Semester getSemester() {
-        return semester;
-    }
+    private Semester semesterd;
+    private List<String> linesd;
 
     private static int getBlocksAmount(String line) {
 
@@ -42,9 +32,9 @@ class DetailsParser {
         return blocksAmount;
     }
 
-    private void fillSemester() {
+    public static Semester fillSemester(Semester semester,List<String> lines) {
 
-        replaceAllRussians();
+        replaceAllRussians(lines);
 
         int i = 0;
 
@@ -87,7 +77,7 @@ class DetailsParser {
                                 //    |ауд.217 (19.04-26.04)
                                 ArrayList<SomeDataStructure> someDataStructures = parseHardPart(line);
                                 for (SomeDataStructure someDataStructure : someDataStructures) {
-                                    fillPairs(pairNumber, startTime, subject, teacher,
+                                    fillPairs(semester,pairNumber, startTime, subject, teacher,
                                             someDataStructure.getLectureHallNumber(),
                                             dayOfWeek,
                                             someDataStructure.getStartDay(),
@@ -105,10 +95,11 @@ class DetailsParser {
             i++;
             line = lines.get(i);
         }
+        return semester;
 
     }
 
-    private void replaceAllRussians() {
+    private static void replaceAllRussians(List<String> lines) {
         String line;
         for (int i = 0; i < lines.size(); i++) {
             line = lines.get(i);
@@ -128,7 +119,7 @@ class DetailsParser {
         }
     }
 
-    private ArrayList<SomeDataStructure> parseHardPart(String line) {
+    private static ArrayList<SomeDataStructure> parseHardPart(String line) {
 
         line = line.substring(PLACE_SCHEDULE_OFFSET);
         // 012345678901234567890123456789
@@ -177,7 +168,7 @@ class DetailsParser {
         return someDataStructures;
     }
 
-    private String parseTeacher(String line) {
+    private static String parseTeacher(String line) {
 
         // 01234567890123456789
         // * Корпоративні інформаційні системи (L) [доц. Сокульський][ ще хтось ]
@@ -195,7 +186,7 @@ class DetailsParser {
         return teacher.toString();
     }
 
-    private String parseSubject(String line) {
+    private static String parseSubject(String line) {
 
         // 0123456789012345678901234567890123456789
         // * Корпоративні інформаційні системи (L) [доц. Сокульський]
@@ -204,7 +195,7 @@ class DetailsParser {
         return line.substring(2, subjectEndIndex);
     }
 
-    private LocalTime parseStartTime(String line, int pairNumber) {
+    private static LocalTime parseStartTime(String line, int pairNumber) {
 
         // 0123456789
         // 1 пара - 9:00
@@ -226,7 +217,7 @@ class DetailsParser {
     }
 
 
-    private DayOfWeek parseDayOfWeek(String line) {
+    private static DayOfWeek parseDayOfWeek(String line) {
 
         // 0123456789
         // Понеділок
@@ -243,7 +234,7 @@ class DetailsParser {
         return weekDays.get(line);
     }
 
-    private void fillPairs(int pairNumber, LocalTime startTime, String subject, String teacher, int lectureHallNumber,
+    private static void fillPairs(Semester semester, int pairNumber, LocalTime startTime, String subject, String teacher, int lectureHallNumber,
                            DayOfWeek dayOfWeek, LocalDate startDay, LocalDate endDay) {
 
         for (int i = 0; i < semester.getWeeksAmount(); i++) {
