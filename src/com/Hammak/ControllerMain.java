@@ -23,11 +23,9 @@ public class ControllerMain {
         } catch (IOException e) {
             return 404;
         }
-        new TableParser(lines.subList(TABLE_START_LINE, TABLE_END_LINE));
-        Semester unfilledSemester = TableParser.getUnfilledSemester();
+        Semester semester = TableParser.getUnfilledSemester(lines.subList(TABLE_START_LINE, TABLE_END_LINE));
 
-        DetailsParser detailsParser = new DetailsParser(lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT), unfilledSemester);
-        Semester semester = detailsParser.getSemester();
+        semester = DetailsParser.fillSemester(semester, lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT));
 
         ExcelPrinter excelPrinter = new ExcelPrinter();
         String filename = getFilename(fileName);
