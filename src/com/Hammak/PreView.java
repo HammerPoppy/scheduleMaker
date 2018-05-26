@@ -3,6 +3,7 @@ package com.hammak;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.*;
@@ -13,6 +14,8 @@ public class PreView extends GridPane{
 
     @FXML
     TabPane preViewTable;
+    @FXML
+    GridPane root;
 
     public PreView(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PreView.fxml"));
@@ -30,10 +33,14 @@ public class PreView extends GridPane{
         for(int i = 0; i < semester.getWeeksAmount(); i++) {
             if(!semester.getWeek(i).isEmpty()) {
                 VBox weekBox = new VBox();
+
+                weekBox.setPrefWidth(root.getPrefWidth());
                 fillWeek(weekBox, semester.getWeek(i));
+
+                ScrollPane scrolledContainer = new ScrollPane(weekBox);
                 Tab weekTab = new Tab();
                 weekTab.setText(ExcelPrinter.getWeekTitleString(semester.getWeek(i)));
-                weekTab.setContent(weekBox);
+                weekTab.setContent(scrolledContainer);
                 preViewTable.getTabs().add(weekTab);
             }
         }
