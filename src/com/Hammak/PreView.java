@@ -3,7 +3,8 @@ package com.hammak;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
@@ -11,11 +12,8 @@ import java.io.IOException;
 public class PreView extends GridPane{
 
     @FXML
-    VBox weekPreView;
-    @FXML
-    HBox weeks;
+    TabPane preViewTable;
 
-    TextField textField;
     public PreView(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PreView.fxml"));
         fxmlLoader.setRoot(this);
@@ -30,11 +28,15 @@ public class PreView extends GridPane{
     }
     public void fill(Semester semester){
         for(int i = 0; i < semester.getWeeksAmount(); i++) {
-            Label weekTitleLabel = new Label(ExcelPrinter.getWeekTitleString(semester.getWeek(i)));
-            StackPane weekTitleContainer = new StackPane(weekTitleLabel);
-            weeks.getChildren().add(weekTitleContainer);
+            if(!semester.getWeek(i).isEmpty()) {
+                VBox weekBox = new VBox();
+                fillWeek(weekBox, semester.getWeek(i));
+                Tab weekTab = new Tab();
+                weekTab.setText(ExcelPrinter.getWeekTitleString(semester.getWeek(i)));
+                weekTab.setContent(weekBox);
+                preViewTable.getTabs().add(weekTab);
+            }
         }
-        fillWeek(weekPreView, semester.getWeek(3));
     }
 
     private static final String DAY_TITLE_COLOR_CODE = "#ffd966";

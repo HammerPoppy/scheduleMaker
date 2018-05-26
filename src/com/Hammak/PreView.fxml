@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 
 <fx:root stylesheets="@preViewStyle.css" type="javafx.scene.layout.GridPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <rowConstraints>
@@ -15,7 +14,6 @@
       <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" />
    </columnConstraints>
    <children>
-      <VBox fx:id="weekPreView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-      <HBox fx:id="weeks" GridPane.rowIndex="1" />
+      <TabPane fx:id="preViewTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
    </children>
 </fx:root>
