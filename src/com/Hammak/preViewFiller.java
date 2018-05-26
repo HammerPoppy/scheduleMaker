@@ -9,6 +9,8 @@ import sun.management.snmp.util.SnmpNamedListTableCache;
 
 public class preViewFiller {
 
+    private static final String DAY_TITLE_COLOR_CODE = "#ffd966";
+
     public static void fillWeek(VBox weekBox, Week week){
         for (int i = 0; i < week.daysAmount(); i++) {
             if (!week.getDay(i).isEmpty()) {
@@ -36,11 +38,11 @@ public class preViewFiller {
         dayContainer.getColumnConstraints().setAll(numberColumn,pairColumn,subjectColumn,typeColumn,teacherColumn,pairHallNumberColumn);
 
         Label titleLabel = new Label(ExcelPrinter.getdayTitle(day));
-        configureLabel(titleLabel);
+        titleLabel.getStyleClass().add("informationLabel");
         StackPane title = new StackPane(titleLabel);
         title.setPrefHeight(20);
-        configureContainer(title);
-        title.setStyle("-fx-background-color: green");
+        title.getStyleClass().add("informationBox");
+        title.setStyle("-fx-background-color: " + DAY_TITLE_COLOR_CODE);
         dayContainer.add(title,0,0,6,1);
 
 
@@ -73,19 +75,21 @@ public class preViewFiller {
         Label pairHallNumber = new Label(pair.getLectureHallNumber() + "");
         StackPane hallNumberBox = new StackPane(pairHallNumber);
 
-        configureLabel(pairNumber);
-        configureLabel(pairTime);
-        configureLabel(pairSubject);
-        configureLabel(pairType);
-        configureLabel(pairTeacher);
-        configureLabel(pairHallNumber);
+        pairNumber.getStyleClass().add("informationLabel");
+        pairTime.getStyleClass().add("informationLabel");
+        pairSubject.getStyleClass().add("informationLabel");
+        pairType.getStyleClass().add("informationLabel");
+        pairTeacher.getStyleClass().add("informationLabel");
+        pairHallNumber.getStyleClass().add("informationLabel");
 
-        configureContainer(numberBox);
-        configureContainer(pairTimeBox);
-        configureContainer(subjectBox);
-        configureContainer(typeBox);
-        configureContainer(teacherBox);
-        configureContainer(hallNumberBox);
+        numberBox.getStyleClass().add("informationBox");
+        numberBox.setStyle("-fx-background-color: " + DAY_TITLE_COLOR_CODE);
+        pairTimeBox.getStyleClass().add("informationBox");
+        pairTimeBox.setStyle("-fx-background-color: " + DAY_TITLE_COLOR_CODE);
+        subjectBox.getStyleClass().add("informationBox");
+        typeBox.getStyleClass().add("informationBox");
+        teacherBox.getStyleClass().add("informationBox");
+        hallNumberBox.getStyleClass().add("informationBox");
 
         pairContainer.add(numberBox,0,rowIndex);
         pairContainer.add(pairTimeBox,1,rowIndex);
@@ -93,12 +97,5 @@ public class preViewFiller {
         pairContainer.add(typeBox,3,rowIndex);
         pairContainer.add(teacherBox,4,rowIndex);
         pairContainer.add(hallNumberBox,5,rowIndex);
-    }
-    private static void configureLabel(Label label){
-        label.setStyle("-fx-padding: 5px");
-    }
-    private static void configureContainer(Parent container){
-        container.setStyle("-fx-border-color: black; -fx-border-style: solid; -fx-border-width: 2px");
-        //container.prefHeight(LINE_HEIGHT);
     }
 }
