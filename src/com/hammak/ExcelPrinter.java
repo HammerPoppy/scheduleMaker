@@ -1,4 +1,4 @@
-package com.Hammak;
+package com.hammak;
 
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.ss.usermodel.*;

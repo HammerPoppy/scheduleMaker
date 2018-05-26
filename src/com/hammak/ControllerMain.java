@@ -1,4 +1,4 @@
-package com.Hammak;
+package com.hammak;
 
 import javafx.beans.property.DoubleProperty;
 
