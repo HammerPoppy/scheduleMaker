@@ -1,4 +1,4 @@
-package com.Hammak;
+package com.hammak;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
