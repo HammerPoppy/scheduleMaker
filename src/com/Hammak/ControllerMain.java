@@ -15,7 +15,7 @@ public class ControllerMain {
     private static final int TABLE_END_LINE = 24;
 
     // returns 404 for FIleNotFoundException
-    int makeFile(String fileName) {
+    static int makeFile(String fileName) {
         List<String> lines = null;
         try {
             lines = Files.readAllLines(Paths.get(fileName),
@@ -23,9 +23,11 @@ public class ControllerMain {
         } catch (IOException e) {
             return 404;
         }
-        Semester semester = TableParser.getUnfilledSemester(lines.subList(TABLE_START_LINE, TABLE_END_LINE));
+        int year = getYear(lines);
 
-        semester = DetailsParser.fillSemester(semester, lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT));
+        Semester semester = TableParser.getUnfilledSemester(lines.subList(TABLE_START_LINE, TABLE_END_LINE),year);
+
+        semester = DetailsParser.fillSemester(semester, lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT),year);
 
         ExcelPrinter excelPrinter = new ExcelPrinter();
         String filename = getFilename(fileName);
@@ -41,6 +43,11 @@ public class ControllerMain {
     private static String getFilename(String arg) {
         int dotIndex = arg.lastIndexOf('.');
         return arg.substring(0, dotIndex) + ".xlsx";
+    }
+    public static int getYear(List<String> lines){
+        String line = lines.get(0);
+        int yearIndex = line.lastIndexOf('.') + 1;
+        return Integer.parseInt(line.substring(yearIndex));
     }
 
 }
