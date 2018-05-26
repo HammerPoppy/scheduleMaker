@@ -1,4 +1,4 @@
-package com.Hammak;
+package com.hammak;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
