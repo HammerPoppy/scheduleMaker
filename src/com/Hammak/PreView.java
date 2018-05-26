@@ -1,13 +1,41 @@
-package com.Hammak;
+package com.hammak;
 
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
-import sun.management.snmp.util.SnmpNamedListTableCache;
 
-public class preViewFiller {
+import java.io.IOException;
+
+public class PreView extends GridPane{
+
+    @FXML
+    VBox weekPreView;
+    @FXML
+    HBox weeks;
+
+    TextField textField;
+    public PreView(){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PreView.fxml"));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+        fxmlLoader.setClassLoader(getClass().getClassLoader());
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+    public void fill(Semester semester){
+        for(int i = 0; i < semester.getWeeksAmount(); i++) {
+            Label weekTitleLabel = new Label(ExcelPrinter.getWeekTitleString(semester.getWeek(i)));
+            StackPane weekTitleContainer = new StackPane(weekTitleLabel);
+            weeks.getChildren().add(weekTitleContainer);
+        }
+        fillWeek(weekPreView, semester.getWeek(3));
+    }
 
     private static final String DAY_TITLE_COLOR_CODE = "#ffd966";
 
