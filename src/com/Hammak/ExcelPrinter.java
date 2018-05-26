@@ -213,7 +213,7 @@ class ExcelPrinter {
         cell.setCellStyle(cellStyle);
     }
 
-    private String getdayTitle(Day day) {
+    public static String getdayTitle(Day day) {
         return String.format("%s %02d.%02d", day.getStringName(),
                 day.getDate().getDayOfMonth(),
                 day.getDate().getMonthValue());
