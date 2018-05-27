@@ -1,6 +1,8 @@
 package com.hammak.FilePicker;
 
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 
@@ -15,6 +17,25 @@ public class FilePickerController implements Initializable {
 
     private HashSet<File> fileList;
     private boolean listIsEmpty = true;
+
+    private void addFileRecord(File file, int index) {
+
+        String filePath = String.valueOf(file);
+        int lastSlashPosition = filePath.lastIndexOf('\\');
+        String fileName = filePath.substring(lastSlashPosition + 1);
+
+        Label fileNameLabel = new Label(fileName);
+        Button deleteFileButton = new Button("x");
+
+        deleteFileButton.setOnAction(event -> {
+            fileList.remove(file);
+            //repaintGUIList();
+        });
+
+        gpList.add(fileNameLabel, 0, index);
+        gpList.add(deleteFileButton, 1, index);
+
+    }
 
     private void deleteAllFileRecords() {
         gpList.getChildren().clear();
