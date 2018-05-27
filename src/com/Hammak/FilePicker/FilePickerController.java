@@ -16,6 +16,16 @@ public class FilePickerController implements Initializable {
     private HashSet<File> fileList;
     private boolean listIsEmpty = true;
 
+    private void deleteAllFileRecords() {
+        gpList.getChildren().clear();
+    }
+
+    public void deleteAllFiles() {
+        deleteAllFileRecords();
+        fileList.clear();
+        listIsEmpty = true;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fileList = new HashSet<>();
