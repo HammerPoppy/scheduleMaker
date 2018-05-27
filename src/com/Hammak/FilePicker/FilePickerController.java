@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import java.io.File;
 import java.net.URL;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 public class FilePickerController implements Initializable {
@@ -29,11 +30,24 @@ public class FilePickerController implements Initializable {
 
         deleteFileButton.setOnAction(event -> {
             fileList.remove(file);
-            //repaintGUIList();
+            repaintGUIList();
         });
 
         gpList.add(fileNameLabel, 0, index);
         gpList.add(deleteFileButton, 1, index);
+    }
+
+    private void repaintGUIList() {
+
+        deleteAllFileRecords();
+        HashSet clone = (HashSet) fileList.clone();
+        Iterator iterator = clone.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            addFileRecord((File) iterator.next(), i);
+            i++;
+            iterator.remove();
+        }
 
     }
 
