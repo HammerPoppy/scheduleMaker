@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.hammak.FilePicker.FilePicker"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<GridPane alignment="center" hgap="10" maxHeight="1.7976931348623157E308" vgap="10"
+          xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308"/>
+        <ColumnConstraints prefWidth="25.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints prefHeight="25.0"/>
+        <RowConstraints maxHeight="1.7976931348623157E308" valignment="BOTTOM" vgrow="ALWAYS"/>
+        <RowConstraints/>
+    </rowConstraints>
+    <children>
+        <ScrollPane fx:id="spList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS"
+                    GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+            <content>
+                <GridPane fx:id="gpList" hgap="10.0" maxWidth="1.7976931348623157E308" GridPane.halignment="RIGHT"
+                          GridPane.hgrow="ALWAYS">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+                        <ColumnConstraints/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints/>
+                    </rowConstraints>
+                </GridPane>
+            </content>
+        </ScrollPane>
+        <Button alignment="CENTER" blendMode="DARKEN" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                onAction="#addFiles" style="-fx-background-color: #70FF70;" text="+" GridPane.halignment="CENTER"
+                GridPane.hgrow="ALWAYS"/>
+        <Button mnemonicParsing="false" onAction="#deleteAllFiles" prefHeight="0.0" prefWidth="25.0"
+                style="-fx-background-color: #FF7070;" text="x" GridPane.columnIndex="1"/>
+    </children>
+</GridPane>
