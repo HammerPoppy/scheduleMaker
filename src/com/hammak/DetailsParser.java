@@ -187,6 +187,9 @@ class DetailsParser {
             return PAIR_7_START_TIME;
         } else {
             int doubleDotIndex = line.indexOf(':');
+            if(doubleDotIndex == -1){
+                doubleDotIndex = line.indexOf('.');
+            }
             int startTimeHours = Integer.parseInt(line.substring(doubleDotIndex - 2, doubleDotIndex).replace(" ",""));
             int startTimeMinutes = Integer.parseInt(line.substring(doubleDotIndex + 1));
 

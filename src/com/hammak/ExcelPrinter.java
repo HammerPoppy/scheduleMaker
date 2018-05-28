@@ -7,6 +7,7 @@ import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.awt.Color;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -19,7 +20,7 @@ class ExcelPrinter {
     ExcelPrinter() {
     }
 
-    void printSemester(Semester semester, String filename) throws IOException {
+    void printSemester(Semester semester, File filename) throws IOException {
         Workbook wb = new XSSFWorkbook();
 
         for (int i = 0; i < semester.getWeeksAmount(); i++) {
