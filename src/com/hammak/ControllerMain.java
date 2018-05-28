@@ -27,6 +27,7 @@ public class ControllerMain {
     // filePicker area
     public GridPane gpList;
     public ScrollPane spList;
+    public Button bDeleteAllFiles;
     private HashSet<File> fileList;
     private boolean listIsEmpty = true;
 
@@ -53,6 +54,7 @@ public class ControllerMain {
         if (receivedList != null) {
             fileList.addAll(receivedList);
             listIsEmpty = false;
+            bDeleteAllFiles.setDisable(false);
 
             repaintGUIList();
         }
@@ -75,6 +77,7 @@ public class ControllerMain {
             fileList.remove(file);
             if (fileList.isEmpty()) {
                 listIsEmpty = true;
+                bDeleteAllFiles.setDisable(true);
             }
             repaintGUIList();
         });
@@ -127,6 +130,7 @@ public class ControllerMain {
         fileList.clear();
         listIsEmpty = true;
         setDestinationFolder();
+        bDeleteAllFiles.setDisable(true);
     }
 
     @FXML
