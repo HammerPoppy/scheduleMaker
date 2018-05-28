@@ -22,6 +22,7 @@
         <ColumnConstraints />
       <ColumnConstraints />
       <ColumnConstraints />
+      <ColumnConstraints halignment="CENTER" />
     </columnConstraints>
     <children>
         <GridPane hgap="10" maxHeight="1.7976931348623157E308" vgap="10" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS">
@@ -39,7 +40,7 @@
                     <content>
                         <GridPane fx:id="gpList" hgap="10.0" maxWidth="1.7976931348623157E308" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" prefWidth="140" />
+                                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" prefWidth="125.0" />
                                 <ColumnConstraints />
                             </columnConstraints>
                             <rowConstraints>
@@ -55,11 +56,17 @@
                 <Button mnemonicParsing="false" onAction="#deleteAllFiles" prefHeight="0.0" prefWidth="25.0" style="-fx-background-color: #FF7070;" text="x" GridPane.columnIndex="1" />
             </children>
          <GridPane.margin>
-            <Insets />
+            <Insets left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
         </GridPane>
-      <Separator maxHeight="1.7976931348623157E308" orientation="VERTICAL" GridPane.columnIndex="2" GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS" />
-      <VBox prefWidth="300.0" GridPane.columnIndex="3">
+      <Separator maxHeight="1.7976931348623157E308" orientation="VERTICAL" GridPane.columnIndex="2" GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets bottom="8.0" top="8.0" />
+         </padding></Separator>
+      <VBox GridPane.columnIndex="3">
          <children>
             <Label text="Destination folder">
                <font>
