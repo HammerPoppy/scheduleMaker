@@ -54,7 +54,7 @@
                     </content>
                 </ScrollPane>
                 <Button alignment="CENTER" blendMode="DARKEN" mnemonicParsing="false" onAction="#addFiles" prefWidth="140.0" style="-fx-background-color: #70FF70;" text="+" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" />
-                <Button mnemonicParsing="false" onAction="#deleteAllFiles" prefHeight="0.0" prefWidth="25.0" style="-fx-background-color: #FF7070;" text="x" GridPane.columnIndex="1" />
+                <Button fx:id="bDeleteAllFiles" disable="true" mnemonicParsing="false" onAction="#deleteAllFiles" prefHeight="0.0" prefWidth="25.0" style="-fx-background-color: #FF7070;" text="x" GridPane.columnIndex="1" />
             </children>
             <GridPane.margin>
                 <Insets left="10.0" right="10.0" top="10.0" />
