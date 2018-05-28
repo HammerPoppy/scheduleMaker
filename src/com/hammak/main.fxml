@@ -124,7 +124,7 @@
       <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
          <children>
             <ProgressBar fx:id="progressBar" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#process" text="start">
+            <Button fx:id="bStart" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#process" text="Start">
                <HBox.margin>
                   <Insets left="5.0" right="5.0" />
                </HBox.margin>

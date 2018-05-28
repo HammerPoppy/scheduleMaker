@@ -1,6 +1,8 @@
 package com.hammak;
 
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
+import javafx.scene.control.ProgressBar;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,16 +25,25 @@ public class FileParser {
         fullProgress.set(0);
         for (File file : files) {
             semesters.add(readSemester(file));
-            fullProgress.set(fullProgress.getValue() +  1.0 / files.size());
+            fullProgress.set(fullProgress.getValue() + 1.0 / files.size());
         }
         return semesters;
     }
 
     public static void writeAllSemestersToFiles(List<Semester> semesters, File destinationFolder, DoubleProperty fullProgress) {
-        fullProgress.set(0);
-        for (int i = 0; i < semesters.size(); i++) {
-            writeToFile(semesters.get(i), destinationFolder);
-            fullProgress.set(fullProgress.getValue() +  1.0 / semesters.size());
+        if (semesters.size() == 1) {
+            Platform.runLater(() -> {
+                fullProgress.set(ProgressBar.INDETERMINATE_PROGRESS);
+            });
+            for (Semester semester : semesters) {
+                writeToFile(semester, destinationFolder);
+            }
+        } else {
+            fullProgress.set(0);
+            for (int i = 0; i < semesters.size(); i++) {
+                writeToFile(semesters.get(i), destinationFolder);
+                fullProgress.set(fullProgress.getValue() + 1.0 / semesters.size());
+            }
         }
 
     }
