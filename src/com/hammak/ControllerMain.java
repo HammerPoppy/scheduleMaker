@@ -168,7 +168,6 @@ public class ControllerMain {
 
     }
     public void changeColor(){
-        System.out.println("ddd");
         preView.setColor("#" + Integer.toHexString(colorPicker.getValue().hashCode()));
         preView.repaint();
     }

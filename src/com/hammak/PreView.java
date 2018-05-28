@@ -136,7 +136,6 @@ public class PreView extends GridPane {
     }
 
     public void fill(Semester semester) {
-        System.out.println(DAY_TITLE_COLOR_CODE);
         current = semester;
         preViewTable.getTabs().clear();
         for (int i = 0; i < semester.getWeeksAmount(); i++) {
