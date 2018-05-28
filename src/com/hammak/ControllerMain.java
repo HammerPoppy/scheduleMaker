@@ -134,11 +134,13 @@ public class ControllerMain {
         directoryChooser.setTitle("Choose save directory");
         userDestinationFolder = directoryChooser.showDialog(((Node) actionEvent.getTarget()).getScene().getWindow());
         currentDestinationFolder = userDestinationFolder;
+        bResetDestinationFolder.setDisable(false);
         setDestinationFolder();
     }
 
     public void resetDestinationFolder(ActionEvent actionEvent) {
         userDestinationFolder = null;
+        bResetDestinationFolder.setDisable(true);
         setDestinationFolder();
     }
 }
