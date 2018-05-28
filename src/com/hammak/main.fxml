@@ -19,7 +19,7 @@
     <rowConstraints>
         <RowConstraints />
         <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="1.7976931348623157E308" percentHeight="7.0" vgrow="ALWAYS" />
     </rowConstraints>
     <columnConstraints>
         <ColumnConstraints prefWidth="200.0" />
@@ -116,9 +116,23 @@
         </VBox>
         <PreView fx:id="preView" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
          <padding>
-            <Insets bottom="5.0" left="10.0" right="5.0" top="10.0" />
-         </padding></PreView>
-      <ProgressBar fx:id="progressBar" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#process" text="start" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></PreView>
+      <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+         <children>
+            <ProgressBar fx:id="progressBar" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#process" text="start">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </HBox>
     </children>
 </GridPane>
