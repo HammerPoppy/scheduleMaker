@@ -1,8 +1,6 @@
 package com.hammak;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -10,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.HashSet;
@@ -23,19 +20,18 @@ public class ControllerMain {
     public Label lDestinationFolder;
     public Button bSetCustomDestinationFolder;
     public Button bResetDestinationFolder;
-    private File currentDestinationFolder;
-    private File userDestinationFolder;
     // filePicker area
     public GridPane gpList;
     public ScrollPane spList;
     public Button bDeleteAllFiles;
-    private HashSet<File> fileList;
-    private boolean listIsEmpty = true;
-
     public ColorPicker colorPicker;
-
     public PreView preView;
     public ProgressBar progressBar;
+    public Button bStart;
+    private File currentDestinationFolder;
+    private File userDestinationFolder;
+    private HashSet<File> fileList;
+    private boolean listIsEmpty = true;
 
     //filePicker
     public void addFiles(ActionEvent actionEvent) {
@@ -57,6 +53,7 @@ public class ControllerMain {
             fileList.addAll(receivedList);
             listIsEmpty = false;
             bDeleteAllFiles.setDisable(false);
+            bStart.setDisable(false);
 
             repaintGUIList();
         }
@@ -80,6 +77,7 @@ public class ControllerMain {
             if (fileList.isEmpty()) {
                 listIsEmpty = true;
                 bDeleteAllFiles.setDisable(true);
+                bStart.setDisable(true);
             }
             repaintGUIList();
         });
@@ -133,6 +131,7 @@ public class ControllerMain {
         listIsEmpty = true;
         setDestinationFolder();
         bDeleteAllFiles.setDisable(true);
+        bStart.setDisable(true);
     }
 
     @FXML
@@ -154,10 +153,16 @@ public class ControllerMain {
         bResetDestinationFolder.setDisable(true);
         setDestinationFolder();
     }
-    public void process(){
+
+    public void process() {
+        bStart.setDisable(true);
         new Thread(() -> {
-            List<Semester> semesters = FileParser.readAllSemesters(fileList,progressBar.progressProperty());
-            FileParser.writeAllSemestersToFiles(semesters,currentDestinationFolder,progressBar.progressProperty());
+            List<Semester> semesters = FileParser.readAllSemesters(fileList, progressBar.progressProperty());
+            FileParser.writeAllSemestersToFiles(semesters, currentDestinationFolder, progressBar.progressProperty());
+            Platform.runLater(() -> {
+                bStart.setDisable(false);
+                progressBar.setProgress(0);
+            });
         }).start();
 
     }
