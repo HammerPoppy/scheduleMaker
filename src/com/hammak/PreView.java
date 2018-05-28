@@ -15,11 +15,16 @@ import java.io.IOException;
 
 public class PreView extends GridPane {
 
-    private static final String DAY_TITLE_COLOR_CODE = "#ffd966";
+    private String DAY_TITLE_COLOR_CODE = "#ffd966";
     @FXML
     TabPane preViewTable;
     @FXML
     GridPane root;
+
+
+    public void setColor(String colorCode){
+        DAY_TITLE_COLOR_CODE = colorCode;
+    }
 
     public PreView() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PreView.fxml"));
@@ -34,7 +39,7 @@ public class PreView extends GridPane {
         }
     }
 
-    public static void fillWeek(VBox weekBox, Week week) {
+    public void fillWeek(VBox weekBox, Week week) {
         for (int i = 0; i < week.daysAmount(); i++) {
             if (!week.getDay(i).isEmpty()) {
                 weekBox.getChildren().add(fillDay(week.getDay(i)));
@@ -42,7 +47,7 @@ public class PreView extends GridPane {
         }
     }
 
-    static GridPane fillDay(Day day) {
+     GridPane fillDay(Day day) {
         GridPane dayContainer = new GridPane();
         ColumnConstraints numberColumn = new ColumnConstraints();
         ColumnConstraints pairColumn = new ColumnConstraints();
@@ -77,7 +82,7 @@ public class PreView extends GridPane {
         return dayContainer;
     }
 
-    static void fillPair(Pair pair, GridPane pairContainer, int rowIndex) {
+    void fillPair(Pair pair, GridPane pairContainer, int rowIndex) {
         Label pairNumber = new Label(pair.getNumber() + "");
         StackPane numberBox = new StackPane(pairNumber);
 
@@ -123,7 +128,7 @@ public class PreView extends GridPane {
         pairContainer.add(hallNumberBox, 5, rowIndex);
     }
 
-    public void fill(Semester semester) {
+    void fill(Semester semester) {
         for (int i = 0; i < semester.getWeeksAmount(); i++) {
             if (!semester.getWeek(i).isEmpty()) {
                 VBox weekBox = new VBox();
