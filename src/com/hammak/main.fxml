@@ -82,7 +82,7 @@
                 <HBox>
                     <children>
                         <Button fx:id="bSetCustomDestinationFolder" mnemonicParsing="false" onAction="#setCustomDestinationFolder" text="Set custom destination folder" />
-                        <Button fx:id="bResetDestinationFolder" mnemonicParsing="false" onAction="#resetDestinationFolder" text="Reset" />
+                        <Button fx:id="bResetDestinationFolder" disable="true" mnemonicParsing="false" onAction="#resetDestinationFolder" text="Reset" />
                     </children>
                     <VBox.margin>
                         <Insets top="3.0" />
