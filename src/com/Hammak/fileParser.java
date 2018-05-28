@@ -27,10 +27,11 @@ public class FileParser {
         }
         return semesters;
     }
-    public static void writeAllSemestersToFiles(List<Semester> semesters, File destinationFolder, DoubleProperty fullProgress){
+
+    public static void writeAllSemestersToFiles(List<Semester> semesters, File destinationFolder, DoubleProperty fullProgress) {
         fullProgress.set(0);
-        for(int i = 0; i < semesters.size();i++){
-            writeToFile(semesters.get(i),destinationFolder);
+        for (int i = 0; i < semesters.size(); i++) {
+            writeToFile(semesters.get(i), destinationFolder);
             fullProgress.add(1.0 / semesters.size());
         }
 
@@ -56,7 +57,7 @@ public class FileParser {
 
     static int writeToFile(Semester semester, File destinationFolder) {
         ExcelPrinter excelPrinter = new ExcelPrinter();
-        File filename = getFilename(semester.getName(),destinationFolder);
+        File filename = getFilename(semester.getName(), destinationFolder);
         try {
             excelPrinter.printSemester(semester, filename);
         } catch (IOException e) {
@@ -65,11 +66,13 @@ public class FileParser {
         }
         return 0;
     }
-    private static File getFilename(String fileName,File destinationFolder) {
+
+    private static File getFilename(String fileName, File destinationFolder) {
         String result = destinationFolder.toString() + "\\" + fileName;
         result = result.substring(0, result.lastIndexOf('.')) + ".xlsx";
         return new File(result);
     }
+
     static int getYear(List<String> lines) {
         String line = lines.get(0);
         int yearIndex = line.lastIndexOf('.') + 1;
