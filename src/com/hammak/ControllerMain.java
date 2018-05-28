@@ -30,7 +30,7 @@ public class ControllerMain {
     private static final int TABLE_END_LINE = 24;
     // Destination folder area
     public Label lDestinationFolder;
-    public Button bSetDestinationFolder;
+    public Button bSetCustomDestinationFolder;
     public Button bResetDestinationFolder;
     private File currentDestinationFolder;
     private File userDestinationFolder;
@@ -163,19 +163,25 @@ public class ControllerMain {
             }
             lDestinationFolder.setText(currentDestinationFolder.getAbsolutePath());
         } else {
-            lDestinationFolder.setText("No files... Add some files to proceed.");
-            currentDestinationFolder = null;
+            if (userDestinationFolder != null) {
+                lDestinationFolder.setText(userDestinationFolder.getAbsolutePath() + "\nNo files... Add some files to proceed.");
+            } else {
+                lDestinationFolder.setText("No files... Add some files to proceed.");
+                currentDestinationFolder = null;
+            }
         }
     }
 
     private void deleteAllFileRecords() {
         gpList.getChildren().clear();
+        setDestinationFolder();
     }
 
     public void deleteAllFiles() {
         deleteAllFileRecords();
         fileList.clear();
         listIsEmpty = true;
+        setDestinationFolder();
     }
 
     @FXML

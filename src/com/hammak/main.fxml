@@ -65,13 +65,19 @@
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
             </Label>
             <Label fx:id="lDestinationFolder" text="No files... Add some files to proceed." />
             <HBox>
                <children>
-                  <Button fx:id="bSetCustomDestinationFolder" onAction="#setCustomDestinationFolder" mnemonicParsing="false" text="Set custom destination folder" />
-                  <Button fx:id="bResetDestinationFolder" onAction="#resetDestinationFolder" mnemonicParsing="false" text="Reset" />
+                  <Button fx:id="bSetCustomDestinationFolder" mnemonicParsing="false" onAction="#setCustomDestinationFolder" text="Set custom destination folder" />
+                  <Button fx:id="bResetDestinationFolder" mnemonicParsing="false" onAction="#resetDestinationFolder" text="Reset" />
                </children>
+               <VBox.margin>
+                  <Insets top="3.0" />
+               </VBox.margin>
             </HBox>
          </children>
          <padding>
