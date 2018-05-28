@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -27,13 +28,17 @@ public class ControllerMain {
     private static final String CHARSET = "windows-1251";
     private static final int TABLE_START_LINE = 8;
     private static final int TABLE_END_LINE = 24;
-
+    // Destination folder area
+    public Label lDestinationFolder;
+    public Button bSetDestinationFolder;
+    public Button bResetDestinationFolder;
+    private File currentDestinationFolder;
+    private File userDestinationFolder;
     // filePicker area
     @FXML
     private GridPane gpList;
     @FXML
     private ScrollPane spList;
-
     private HashSet<File> fileList;
     private boolean listIsEmpty = true;
 
@@ -123,6 +128,9 @@ public class ControllerMain {
 
         deleteFileButton.setOnAction(event -> {
             fileList.remove(file);
+            if (fileList.isEmpty()) {
+                listIsEmpty = true;
+            }
             repaintGUIList();
         });
 
@@ -142,6 +150,22 @@ public class ControllerMain {
             iterator.remove();
         }
 
+        setDestinationFolder();
+
+    }
+
+    private void setDestinationFolder() {
+        if (!listIsEmpty) {
+            if (userDestinationFolder == null) {
+                String filePath = fileList.iterator().next().getAbsolutePath();
+                int lastSlashIndex = filePath.lastIndexOf('\\');
+                currentDestinationFolder = new File(filePath.substring(0, lastSlashIndex));
+            }
+            lDestinationFolder.setText(currentDestinationFolder.getAbsolutePath());
+        } else {
+            lDestinationFolder.setText("No files... Add some files to proceed.");
+            currentDestinationFolder = null;
+        }
     }
 
     private void deleteAllFileRecords() {
@@ -159,4 +183,16 @@ public class ControllerMain {
         fileList = new HashSet<>();
     }
 
+    public void setCustomDestinationFolder(ActionEvent actionEvent) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Choose save directory");
+        userDestinationFolder = directoryChooser.showDialog(((Node) actionEvent.getTarget()).getScene().getWindow());
+        currentDestinationFolder = userDestinationFolder;
+        setDestinationFolder();
+    }
+
+    public void resetDestinationFolder(ActionEvent actionEvent) {
+        userDestinationFolder = null;
+        setDestinationFolder();
+    }
 }
