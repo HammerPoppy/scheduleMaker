@@ -1,4 +1,4 @@
-package com.Hammak;
+package com.hammak;
 
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.ss.usermodel.*;
@@ -24,7 +24,7 @@ class ExcelPrinter {
 
         for (int i = 0; i < semester.getWeeksAmount(); i++) {
             if (!semester.getWeek(i).isEmpty()) {
-                printWeek(i, wb, semester);
+                printWeek(semester.getWeek(i), wb);
             }
         }
 
@@ -33,28 +33,28 @@ class ExcelPrinter {
         }
     }
 
-    private void printWeek(int weekIndex, Workbook wb, Semester semester) {
-        Sheet sheet = wb.createSheet(getWeekTitleString(weekIndex, semester));
+    private void printWeek(Week week, Workbook wb) {
+        Sheet sheet = wb.createSheet(getWeekTitleString(week));
         int currentRow = 0;
-        for (int i = 0; i < semester.getWeek(weekIndex).daysAmount(); i++) {
-            if (!semester.getWeek(weekIndex).getDay(i).isEmpty()) {
-                currentRow = printDay(i, weekIndex, currentRow, wb, sheet, semester);
+        for (int i = 0; i < week.daysAmount(); i++) {
+            if (!week.getDay(i).isEmpty()) {
+                currentRow = printDay( currentRow, wb, sheet, week.getDay(i));
             }
         }
     }
 
-    private String getWeekTitleString(int weekIndex, Semester semester) {
-        return String.format("%02d.%02d", semester.getWeek(weekIndex).getDay(0).getDate().getDayOfMonth(),
-                semester.getWeek(weekIndex).getDay(0).getDate().getMonthValue());
+    public static String getWeekTitleString(Week week) {
+        return String.format("%02d.%02d", week.getDay(0).getDate().getDayOfMonth(),
+                week.getDay(0).getDate().getMonthValue());
     }
 
-    private int printDay(int dayIndex, int weekIndex, int currentRow, Workbook wb, Sheet sheet, Semester semester) {
-        createDayTitleCell(dayIndex, weekIndex, currentRow, wb, sheet, semester);
+    private int printDay(int currentRow, Workbook wb, Sheet sheet, Day day) {
+        createDayTitleCell( currentRow, wb, sheet, day);
         currentRow++;
 
-        for (int i = 0; i < semester.getWeek(weekIndex).getDay(dayIndex).pairsAmount(); i++) {
-            if (!semester.getWeek(weekIndex).getDay(dayIndex).getPair(i).isEmpty()) {
-                printPair(i, dayIndex, weekIndex, currentRow, wb, sheet, semester);
+        for (int i = 0; i < day.pairsAmount(); i++) {
+            if (!day.getPair(i).isEmpty()) {
+                printPair(day.getPair(i), currentRow, wb, sheet);
                 currentRow++;
             }
         }
@@ -62,7 +62,7 @@ class ExcelPrinter {
         return currentRow;
     }
 
-    private void createDayTitleCell(int dayIndex, int weekIndex, int currentRow, Workbook wb, Sheet sheet, Semester semester) {
+    private void createDayTitleCell(int currentRow, Workbook wb, Sheet sheet, Day day) {
         Row row = sheet.createRow(currentRow);
         Cell cell = row.createCell(DAY_TITLE_COLUMN);
 
@@ -90,7 +90,7 @@ class ExcelPrinter {
             }
         }
 
-        cell.setCellValue(getdayTitle(dayIndex, weekIndex, semester));
+        cell.setCellValue(getdayTitle(day));
 
         setAllignCenterCellStyle(wb, cell);
         setColor(wb, cell);
@@ -102,17 +102,16 @@ class ExcelPrinter {
         }
     }
 
-    private void printPair(int pairIndex, int dayIndex, int weekIndex, int currentRow, Workbook wb, Sheet sheet, Semester semester) {
-        Pair pair = semester.getWeek(weekIndex).getDay(dayIndex).getPair(pairIndex);
+    private void printPair(Pair pair, int currentRow, Workbook wb, Sheet sheet) {
 
         Row row = sheet.createRow(currentRow);
 
         createNumberCell(pair, wb, row);
-        createTimeCell(pairIndex, wb, dayIndex, weekIndex, semester, row);
-        createSubjectCell(pairIndex, wb, dayIndex, weekIndex, semester, row);
-        createTypeCell(pairIndex, wb, dayIndex, weekIndex, semester, row);
-        createTeacherCell(pairIndex, wb, dayIndex, weekIndex, semester, row);
-        createLectureHallNumberCell(pairIndex, wb, dayIndex, weekIndex, semester, row);
+        createTimeCell(pair, wb, row);
+        createSubjectCell(pair, wb, row);
+        createTypeCell(pair, wb, row);
+        createTeacherCell(pair, wb, row);
+        createLectureHallNumberCell(pair, wb, row);
 
         setColumnWidths(sheet);
     }
@@ -125,46 +124,46 @@ class ExcelPrinter {
         sheet.autoSizeColumn(4);
     }
 
-    private void createLectureHallNumberCell(int pairIndex, Workbook wb, int dayIndex, int weekIndex, Semester semester, Row row) {
+    private void createLectureHallNumberCell(Pair pair, Workbook wb, Row row) {
         Cell cell = row.createCell(5);
-        cell.setCellValue(semester.getWeek(weekIndex).getDay(dayIndex).getPair(pairIndex).getLectureHallNumber());
+        cell.setCellValue(pair.getLectureHallNumber());
 
         setAllignCenterCellStyle(wb, cell);
 
         setAllBorders(cell, wb);
     }
 
-    private void createTeacherCell(int pairIndex, Workbook wb, int dayIndex, int weekIndex, Semester semester, Row row) {
+    private void createTeacherCell(Pair pair, Workbook wb, Row row) {
         Cell cell = row.createCell(4);
-        cell.setCellValue(semester.getWeek(weekIndex).getDay(dayIndex).getPair(pairIndex).getTeacher());
+        cell.setCellValue(pair.getTeacher());
 
         setAllBorders(cell, wb);
     }
 
-    private void createTypeCell(int pairIndex, Workbook wb, int dayIndex, int weekIndex, Semester semester, Row row) {
+    private void createTypeCell(Pair pair, Workbook wb, Row row) {
         Cell cell = row.createCell(3);
-        cell.setCellValue(Character.toString(semester.getWeek(weekIndex).getDay(dayIndex).getPair(pairIndex).getType()));
+        cell.setCellValue(Character.toString(pair.getType()));
 
         setAllignCenterCellStyle(wb, cell);
 
         setAllBorders(cell, wb);
     }
 
-    private void createSubjectCell(int pairIndex, Workbook wb, int dayIndex, int weekIndex, Semester semester, Row row) {
+    private void createSubjectCell(Pair pair, Workbook wb, Row row) {
         Cell cell = row.createCell(2);
 
-        cell.setCellValue(semester.getWeek(weekIndex).getDay(dayIndex).getPair(pairIndex).getSubject());
+        cell.setCellValue(pair.getSubject());
 
         setAllBorders(cell, wb);
     }
 
-    private void createTimeCell(int pairIndex, Workbook wb, int dayIndex, int weekIndex, Semester semester, Row row) {
+    private void createTimeCell(Pair pair, Workbook wb, Row row) {
         Cell cell = row.createCell(1);
         // 09:00-10:20
-        cell.setCellValue(String.format("%02d:%02d-%02d:%02d", semester.getWeek(weekIndex).getDay(dayIndex).getPair(pairIndex).getStartTime().getHour(),
-                semester.getWeek(weekIndex).getDay(dayIndex).getPair(pairIndex).getStartTime().getMinute(),
-                semester.getWeek(weekIndex).getDay(dayIndex).getPair(pairIndex).getStartTime().plusMinutes(80).getHour(),
-                semester.getWeek(weekIndex).getDay(dayIndex).getPair(pairIndex).getStartTime().plusMinutes(80).getMinute()));
+        cell.setCellValue(String.format("%02d:%02d-%02d:%02d", pair.getStartTime().getHour(),
+                pair.getStartTime().getMinute(),
+                pair.getStartTime().plusMinutes(80).getHour(),
+                pair.getStartTime().plusMinutes(80).getMinute()));
 
         setAllBorders(cell, wb);
         setColor(wb, cell);
@@ -214,10 +213,10 @@ class ExcelPrinter {
         cell.setCellStyle(cellStyle);
     }
 
-    private String getdayTitle(int dayIndex, int weekIndex, Semester semester) {
-        return String.format("%s %02d.%02d", semester.getWeek(weekIndex).getDay(dayIndex).getStringName(),
-                semester.getWeek(weekIndex).getDay(dayIndex).getDate().getDayOfMonth(),
-                semester.getWeek(weekIndex).getDay(dayIndex).getDate().getMonthValue());
+    public static String getdayTitle(Day day) {
+        return String.format("%s %02d.%02d", day.getStringName(),
+                day.getDate().getDayOfMonth(),
+                day.getDate().getMonthValue());
     }
 
 }

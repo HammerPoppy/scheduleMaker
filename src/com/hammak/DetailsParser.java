@@ -1,4 +1,4 @@
-package com.Hammak;
+package com.hammak;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -13,7 +13,6 @@ class DetailsParser {
     // МЕГА КОСТЫЛЬ (МНЕ ЛЕНЬ ОПРЕДЕЛЯТЬ ГОД ИЗ ФАЙЛА)
     // влияет на LocalDate каждого дня (в getCurrentDayDate()),
     // то есть день недели тоже, так что для каждого года надо перекомпилировать проги. сук, надо переделать
-    private static final int CURRENT_YEAR = 2018;
     private static final int PLACE_SCHEDULE_OFFSET = 3;
     private static final LocalTime PAIR_6_START_TIME;
     private static final LocalTime PAIR_7_START_TIME;
@@ -36,10 +35,9 @@ class DetailsParser {
         return blocksAmount;
     }
 
-    public static Semester fillSemester(Semester semester,List<String> lines) {
+    public static Semester fillSemester(Semester semester,List<String> lines,int year) {
 
         int i = 0;
-
         String line = lines.get(i);
 
         while (!(line.charAt(0) == ' ')) {
@@ -77,7 +75,7 @@ class DetailsParser {
                                 // 012345678901234567890123456789
                                 //    |ауд.213 (01.03)|ауд.205 (08.03-15.03)|ауд.212 (22.03-12.04)|
                                 //    |ауд.217 (19.04-26.04)
-                                ArrayList<SomeDataStructure> someDataStructures = parseHardPart(line);
+                                ArrayList<SomeDataStructure> someDataStructures = parseHardPart(line,year);
                                 for (SomeDataStructure someDataStructure : someDataStructures) {
                                     fillPairs(semester,pairNumber, startTime, subject, teacher,
                                             someDataStructure.getLectureHallNumber(),
@@ -101,7 +99,7 @@ class DetailsParser {
 
     }
     
-    private static ArrayList<SomeDataStructure> parseHardPart(String line) {
+    private static ArrayList<SomeDataStructure> parseHardPart(String line,int year) {
 
         line = line.substring(PLACE_SCHEDULE_OFFSET);
         // 012345678901234567890123456789
@@ -127,7 +125,7 @@ class DetailsParser {
             // 19.04-26.04)
             int startDayDay = Integer.parseInt(line.substring(0, 2));
             int startDayMonth = Integer.parseInt(line.substring(3, 5));
-            LocalDate startDay = LocalDate.of(CURRENT_YEAR, startDayMonth, startDayDay);
+            LocalDate startDay = LocalDate.of(year, startDayMonth, startDayDay);
             someDataStructures.get(i).setStartDay(startDay);
 
 
@@ -138,7 +136,7 @@ class DetailsParser {
 
                 int endDayDay = Integer.parseInt(line.substring(0, 2));
                 int endDayMonth = Integer.parseInt(line.substring(3, 5));
-                someDataStructures.get(i).setEndDay(LocalDate.of(CURRENT_YEAR, endDayMonth, endDayDay));
+                someDataStructures.get(i).setEndDay(LocalDate.of(year, endDayMonth, endDayDay));
                 line = line.substring(6);
             } else {
                 someDataStructures.get(i).setEndDay(startDay);
