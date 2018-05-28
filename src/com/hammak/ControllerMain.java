@@ -32,6 +32,8 @@ public class ControllerMain {
 
     public ColorPicker colorPicker;
 
+    public PreView preView;
+
     //filePicker
     public void addFiles(ActionEvent actionEvent) {
 
@@ -54,6 +56,9 @@ public class ControllerMain {
 
             repaintGUIList();
         }
+
+        Semester semester = FileParser.readSemester(fileList.iterator().next());
+        preView.fill(semester);
 
     }
 
