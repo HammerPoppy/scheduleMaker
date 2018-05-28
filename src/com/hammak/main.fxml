@@ -41,7 +41,7 @@
             <children>
                 <ScrollPane fx:id="spList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                     <content>
-                        <GridPane fx:id="gpList" hgap="10.0" maxWidth="1.7976931348623157E308" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS">
+                        <GridPane fx:id="gpList" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" prefWidth="125.0" />
                                 <ColumnConstraints />

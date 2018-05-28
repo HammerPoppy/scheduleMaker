@@ -1,14 +1,17 @@
 package com.hammak;
 
+import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.util.HashSet;
@@ -72,6 +75,23 @@ public class ControllerMain {
         String fileName = filePath.substring(lastSlashPosition + 1);
 
         Label fileNameLabel = new Label(fileName);
+        fileNameLabel.setCursor(Cursor.HAND);
+
+        fileNameLabel.setOnMouseClicked(event -> {
+            ScaleTransition st = new ScaleTransition(Duration.millis(300), fileNameLabel);
+            st.setByX(0.2);
+            st.setByY(0.2);
+            st.setCycleCount(2);
+            st.setAutoReverse(true);
+
+            st.play();
+
+            File clickedFile = findFile(fileNameLabel.getText());
+            Semester semester = FileParser.readSemester(clickedFile);
+            preView.fill(semester);
+
+        });
+
         Button deleteFileButton = new Button("x");
 
         deleteFileButton.setOnAction(event -> {
@@ -86,6 +106,19 @@ public class ControllerMain {
 
         gpList.add(fileNameLabel, 0, index);
         gpList.add(deleteFileButton, 1, index);
+    }
+
+    private File findFile(String fileName) {
+        File result = null;
+        Iterator<File> iterator = fileList.iterator();
+        while (iterator.hasNext()) {
+            File currentFile = iterator.next();
+            if (currentFile.getName().equals(fileName)) {
+                result = currentFile;
+                break;
+            }
+        }
+        return result;
     }
 
     private void repaintGUIList() {
