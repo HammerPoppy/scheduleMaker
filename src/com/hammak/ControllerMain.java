@@ -1,15 +1,16 @@
 package com.hammak;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.HashSet;
@@ -34,6 +35,7 @@ public class ControllerMain {
     public ColorPicker colorPicker;
 
     public PreView preView;
+    public ProgressBar progressBar;
 
     //filePicker
     public void addFiles(ActionEvent actionEvent) {
@@ -151,5 +153,12 @@ public class ControllerMain {
         userDestinationFolder = null;
         bResetDestinationFolder.setDisable(true);
         setDestinationFolder();
+    }
+    public void process(){
+        new Thread(() -> {
+            List<Semester> semesters = FileParser.readAllSemesters(fileList,progressBar.progressProperty());
+            FileParser.writeAllSemestersToFiles(semesters,currentDestinationFolder,progressBar.progressProperty());
+        }).start();
+
     }
 }
