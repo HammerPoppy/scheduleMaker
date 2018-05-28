@@ -1,115 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ColorPicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import com.hammak.PreView?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<GridPane maxHeight="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hammak.ControllerMain">
+<GridPane maxHeight="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.121"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hammak.ControllerMain">
     <rowConstraints>
-        <RowConstraints />
-        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+        <RowConstraints/>
+        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS"/>
     </rowConstraints>
     <columnConstraints>
-        <ColumnConstraints prefWidth="200.0" />
-        <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints halignment="CENTER" />
+        <ColumnConstraints prefWidth="200.0"/>
+        <ColumnConstraints/>
+        <ColumnConstraints halignment="CENTER"/>
+        <ColumnConstraints/>
     </columnConstraints>
     <children>
-        <GridPane hgap="10" maxHeight="1.7976931348623157E308" vgap="10" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS">
+        <GridPane hgap="10" maxHeight="1.7976931348623157E308" vgap="10" GridPane.rowIndex="0"
+                  GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS">
             <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
-                <ColumnConstraints prefWidth="40.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308"/>
+                <ColumnConstraints prefWidth="40.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints prefHeight="25.0" />
-                <RowConstraints maxHeight="1.7976931348623157E308" valignment="BOTTOM" vgrow="ALWAYS" />
-                <RowConstraints />
+                <RowConstraints prefHeight="25.0"/>
+                <RowConstraints maxHeight="1.7976931348623157E308" valignment="BOTTOM" vgrow="ALWAYS"/>
+                <RowConstraints/>
             </rowConstraints>
             <children>
-                <ScrollPane fx:id="spList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                <ScrollPane fx:id="spList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                            GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS"
+                            GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                     <content>
-                        <GridPane fx:id="gpList" hgap="10.0" maxWidth="1.7976931348623157E308" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS">
+                        <GridPane fx:id="gpList" hgap="10.0" maxWidth="1.7976931348623157E308"
+                                  GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" prefWidth="125.0" />
-                                <ColumnConstraints />
+                                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" prefWidth="125.0"/>
+                                <ColumnConstraints/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints />
+                                <RowConstraints/>
                             </rowConstraints>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
+                            <padding>
+                                <Insets left="10.0"/>
+                            </padding>
                         </GridPane>
                     </content>
                 </ScrollPane>
-                <Button alignment="CENTER" blendMode="DARKEN" mnemonicParsing="false" onAction="#addFiles" prefWidth="140.0" style="-fx-background-color: #70FF70;" text="+" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" />
-                <Button mnemonicParsing="false" onAction="#deleteAllFiles" prefHeight="0.0" prefWidth="25.0" style="-fx-background-color: #FF7070;" text="x" GridPane.columnIndex="1" />
+                <Button alignment="CENTER" blendMode="DARKEN" mnemonicParsing="false" onAction="#addFiles"
+                        prefWidth="140.0" style="-fx-background-color: #70FF70;" text="+" GridPane.halignment="RIGHT"
+                        GridPane.hgrow="ALWAYS"/>
+                <Button mnemonicParsing="false" onAction="#deleteAllFiles" prefHeight="0.0" prefWidth="25.0"
+                        style="-fx-background-color: #FF7070;" text="x" GridPane.columnIndex="1"/>
             </children>
-         <GridPane.margin>
-            <Insets left="10.0" right="10.0" top="10.0" />
-         </GridPane.margin>
+            <GridPane.margin>
+                <Insets left="10.0" right="10.0" top="10.0"/>
+            </GridPane.margin>
         </GridPane>
-      <Separator maxHeight="1.7976931348623157E308" orientation="VERTICAL" GridPane.columnIndex="2" GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <padding>
-            <Insets bottom="8.0" top="8.0" />
-         </padding></Separator>
-      <VBox GridPane.columnIndex="3">
-         <children>
-            <Label text="Destination folder">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="lDestinationFolder" text="No files... Add some files to proceed." />
-            <HBox>
-               <children>
-                  <Button fx:id="bSetCustomDestinationFolder" mnemonicParsing="false" onAction="#setCustomDestinationFolder" text="Set custom destination folder" />
-                  <Button fx:id="bResetDestinationFolder" mnemonicParsing="false" onAction="#resetDestinationFolder" text="Reset" />
-               </children>
-               <VBox.margin>
-                  <Insets top="3.0" />
-               </VBox.margin>
-            </HBox>
-         </children>
-         <padding>
-            <Insets left="10.0" top="5.0" />
-         </padding>
-      </VBox>
-      <VBox GridPane.columnIndex="4" GridPane.halignment="CENTER">
-         <children>
-            <Label text="Color setting">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <padding>
-                  <Insets top="5.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </Label>
-            <ColorPicker fx:id="colorPicker" />
-         </children>
-         <GridPane.margin>
-            <Insets left="8.0" />
-         </GridPane.margin>
-      </VBox>
+        <Separator maxHeight="1.7976931348623157E308" orientation="VERTICAL" GridPane.columnIndex="1"
+                   GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS">
+            <GridPane.margin>
+                <Insets/>
+            </GridPane.margin>
+            <padding>
+                <Insets bottom="8.0" top="8.0"/>
+            </padding>
+        </Separator>
+        <VBox GridPane.columnIndex="2">
+            <children>
+                <Label text="Destination folder">
+                    <font>
+                        <Font name="System Bold" size="14.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="5.0"/>
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="lDestinationFolder" text="No files... Add some files to proceed."/>
+                <HBox>
+                    <children>
+                        <Button fx:id="bSetCustomDestinationFolder" mnemonicParsing="false"
+                                onAction="#setCustomDestinationFolder" text="Set custom destination folder"/>
+                        <Button fx:id="bResetDestinationFolder" mnemonicParsing="false"
+                                onAction="#resetDestinationFolder" text="Reset"/>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="3.0"/>
+                    </VBox.margin>
+                </HBox>
+            </children>
+            <padding>
+                <Insets left="10.0" top="5.0"/>
+            </padding>
+        </VBox>
+        <VBox GridPane.columnIndex="3" GridPane.halignment="CENTER">
+            <children>
+                <Label text="Color setting">
+                    <font>
+                        <Font name="System Bold" size="14.0"/>
+                    </font>
+                    <padding>
+                        <Insets top="5.0"/>
+                    </padding>
+                    <VBox.margin>
+                        <Insets bottom="5.0"/>
+                    </VBox.margin>
+                </Label>
+                <ColorPicker fx:id="colorPicker"/>
+            </children>
+            <GridPane.margin>
+                <Insets left="8.0"/>
+            </GridPane.margin>
+        </VBox>
+        <PreView GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
     </children>
 </GridPane>
