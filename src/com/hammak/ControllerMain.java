@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 
@@ -16,6 +17,7 @@ import java.util.List;
 
 public class ControllerMain {
 
+    public static final String DEFAULT_COLOR = "#ADFF2F";
     // Destination folder area
     public Label lDestinationFolder;
     public Button bSetCustomDestinationFolder;
@@ -138,6 +140,7 @@ public class ControllerMain {
     @FXML
     public void initialize() {
         fileList = new HashSet<>();
+        colorPicker.setValue(Color.valueOf(DEFAULT_COLOR));
     }
 
     public void setCustomDestinationFolder(ActionEvent actionEvent) {
