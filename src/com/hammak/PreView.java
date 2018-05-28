@@ -21,6 +21,8 @@ public class PreView extends GridPane {
     @FXML
     GridPane root;
 
+    Semester current;
+
 
     public void setColor(String colorCode){
         DAY_TITLE_COLOR_CODE = colorCode;
@@ -39,7 +41,7 @@ public class PreView extends GridPane {
         }
     }
 
-    public void fillWeek(VBox weekBox, Week week) {
+    private void fillWeek(VBox weekBox, Week week) {
         for (int i = 0; i < week.daysAmount(); i++) {
             if (!week.getDay(i).isEmpty()) {
                 weekBox.getChildren().add(fillDay(week.getDay(i)));
@@ -82,7 +84,7 @@ public class PreView extends GridPane {
         return dayContainer;
     }
 
-    void fillPair(Pair pair, GridPane pairContainer, int rowIndex) {
+    private void fillPair(Pair pair, GridPane pairContainer, int rowIndex) {
         Label pairNumber = new Label(pair.getNumber() + "");
         StackPane numberBox = new StackPane(pairNumber);
 
@@ -127,8 +129,16 @@ public class PreView extends GridPane {
         pairContainer.add(teacherBox, 4, rowIndex);
         pairContainer.add(hallNumberBox, 5, rowIndex);
     }
+    public void repaint(){
+        if(current != null){
+            fill(current);
+        }
+    }
 
-    void fill(Semester semester) {
+    public void fill(Semester semester) {
+        System.out.println(DAY_TITLE_COLOR_CODE);
+        current = semester;
+        preViewTable.getTabs().clear();
         for (int i = 0; i < semester.getWeeksAmount(); i++) {
             if (!semester.getWeek(i).isEmpty()) {
                 VBox weekBox = new VBox();

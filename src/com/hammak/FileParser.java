@@ -30,18 +30,18 @@ public class FileParser {
         return semesters;
     }
 
-    public static void writeAllSemestersToFiles(List<Semester> semesters, File destinationFolder, DoubleProperty fullProgress) {
+    public static void writeAllSemestersToFiles(List<Semester> semesters, File destinationFolder, DoubleProperty fullProgress, String color) {
         if (semesters.size() == 1) {
             Platform.runLater(() -> {
                 fullProgress.set(ProgressBar.INDETERMINATE_PROGRESS);
             });
             for (Semester semester : semesters) {
-                writeToFile(semester, destinationFolder);
+                writeToFile(semester, destinationFolder,color);
             }
         } else {
             fullProgress.set(0);
             for (int i = 0; i < semesters.size(); i++) {
-                writeToFile(semesters.get(i), destinationFolder);
+                writeToFile(semesters.get(i), destinationFolder,color);
                 fullProgress.set(fullProgress.getValue() + 1.0 / semesters.size());
             }
         }
@@ -66,8 +66,8 @@ public class FileParser {
         return semester;
     }
 
-    static int writeToFile(Semester semester, File destinationFolder) {
-        ExcelPrinter excelPrinter = new ExcelPrinter();
+    static int writeToFile(Semester semester, File destinationFolder, String color) {
+        ExcelPrinter excelPrinter = new ExcelPrinter(color);
         File filename = getFilename(semester.getName(), destinationFolder);
         try {
             excelPrinter.printSemester(semester, filename);

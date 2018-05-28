@@ -108,7 +108,7 @@
                         <Insets bottom="5.0" />
                     </VBox.margin>
                 </Label>
-                <ColorPicker fx:id="colorPicker" />
+                <ColorPicker fx:id="colorPicker" onAction="#changeColor" />
             </children>
             <GridPane.margin>
                 <Insets left="8.0" />

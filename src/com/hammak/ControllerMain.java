@@ -59,6 +59,7 @@ public class ControllerMain {
         }
 
         Semester semester = FileParser.readSemester(fileList.iterator().next());
+        preView.setColor("#" + Integer.toHexString(colorPicker.getValue().hashCode()));
         preView.fill(semester);
 
     }
@@ -158,12 +159,17 @@ public class ControllerMain {
         bStart.setDisable(true);
         new Thread(() -> {
             List<Semester> semesters = FileParser.readAllSemesters(fileList, progressBar.progressProperty());
-            FileParser.writeAllSemestersToFiles(semesters, currentDestinationFolder, progressBar.progressProperty());
+            FileParser.writeAllSemestersToFiles(semesters, currentDestinationFolder, progressBar.progressProperty(),"#" + Integer.toHexString(colorPicker.getValue().hashCode()));
             Platform.runLater(() -> {
                 bStart.setDisable(false);
                 progressBar.setProgress(0);
             });
         }).start();
 
+    }
+    public void changeColor(){
+        System.out.println("ddd");
+        preView.setColor("#" + Integer.toHexString(colorPicker.getValue().hashCode()));
+        preView.repaint();
     }
 }
