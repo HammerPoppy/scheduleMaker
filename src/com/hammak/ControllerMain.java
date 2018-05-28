@@ -77,7 +77,7 @@ public class ControllerMain {
         deleteFileButton.setOnAction(event -> {
             fileList.remove(file);
             if (fileList.isEmpty()) {
-                listIsEmpty = true;
+                listIsEmpty = true; 
                 bDeleteAllFiles.setDisable(true);
                 bStart.setDisable(true);
             }
@@ -159,12 +159,16 @@ public class ControllerMain {
     }
 
     public void process() {
-        bStart.setDisable(true);
+        bStart.setVisible(false);
+        bStart.setManaged(false);
+        GridPane.setColumnSpan(progressBar,2);
         new Thread(() -> {
             List<Semester> semesters = FileParser.readAllSemesters(fileList, progressBar.progressProperty());
             FileParser.writeAllSemestersToFiles(semesters, currentDestinationFolder, progressBar.progressProperty(), colorPicker.getValue().toString().substring(0, 8));
             Platform.runLater(() -> {
-                bStart.setDisable(false);
+                GridPane.setColumnSpan(progressBar,1);
+                bStart.setVisible(true);
+                bStart.setManaged(true);
                 progressBar.setProgress(0);
             });
         }).start();
