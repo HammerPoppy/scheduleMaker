@@ -2,14 +2,15 @@ package com.hammak;
 
 import javafx.beans.property.DoubleProperty;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
-public class fileParser {
+public class FileParser {
 
     private static final int DETAILS_START_LINE = 26;
     private static final int DETAILS_END_SHIFT = 4;
@@ -17,47 +18,45 @@ public class fileParser {
     private static final int TABLE_START_LINE = 8;
     private static final int TABLE_END_LINE = 24;
 
-    static List<Semester> readAllSemesters(List<String> files, DoubleProperty fullProgress, DoubleProperty fileProgress) {
+    public static List<Semester> readAllSemesters(HashSet<File> files, DoubleProperty fullProgress) {
         ArrayList<Semester> semesters = new ArrayList<>(files.size());
         fullProgress.set(0);
-        for (String path : files) {
-            semesters.add(readSemester(path,fileProgress));
+        for (File file : files) {
+            semesters.add(readSemester(file));
             fullProgress.add(1.0 / files.size());
         }
         return semesters;
     }
-    static void writeAllSemestersToFiles(List<Semester> semesters, List<String> files, DoubleProperty fullProgress, DoubleProperty fileProgress){
+    public static void writeAllSemestersToFiles(List<Semester> semesters, File destinationFolder, DoubleProperty fullProgress){
         fullProgress.set(0);
         for(int i = 0; i < semesters.size();i++){
-            writeToFile(semesters.get(i), files.get(i), fileProgress);
+            writeToFile(semesters.get(i),destinationFolder);
             fullProgress.add(1.0 / semesters.size());
         }
 
     }
 
-    static Semester readSemester(String fileName, DoubleProperty progress) {
-        progress.set(0);
+    static Semester readSemester(File file) {
         List<String> lines = null;
         try {
-            lines = Files.readAllLines(Paths.get(fileName),
+            lines = Files.readAllLines(file.toPath(),
                     Charset.forName(CHARSET));
         } catch (IOException e) {
             return null;
         }
         int year = getYear(lines);
-        progress.set(0.05);
         Semester semester = TableParser.getUnfilledSemester(lines.subList(TABLE_START_LINE, TABLE_END_LINE), year);
-        progress.set(0.1);
 
         semester = DetailsParser.fillSemester(semester, lines.subList(DETAILS_START_LINE, lines.size() - DETAILS_END_SHIFT), year);
-        progress.set(0.2);
+
+        semester.setName(file.getName());
 
         return semester;
     }
 
-    static int writeToFile(Semester semester, String fileName, DoubleProperty progress) {
+    static int writeToFile(Semester semester, File destinationFolder) {
         ExcelPrinter excelPrinter = new ExcelPrinter();
-        String filename = getFilename(fileName);
+        File filename = getFilename(semester.getName(),destinationFolder);
         try {
             excelPrinter.printSemester(semester, filename);
         } catch (IOException e) {
@@ -66,9 +65,10 @@ public class fileParser {
         }
         return 0;
     }
-    private static String getFilename(String arg) {
-        int dotIndex = arg.lastIndexOf('.');
-        return arg.substring(0, dotIndex) + ".xlsx";
+    private static File getFilename(String fileName,File destinationFolder) {
+        String result = destinationFolder.toString() + "\\" + fileName;
+        result = result.substring(0, result.lastIndexOf('.')) + ".xlsx";
+        return new File(result);
     }
     static int getYear(List<String> lines) {
         String line = lines.get(0);
