@@ -17,7 +17,14 @@ class ExcelPrinter {
     private static final int DAY_TITLE_COLUMN = 2;
     private static final int ONE_SYMBOL_COLUMN_WIDTH = 750;
 
-    ExcelPrinter() {
+    private String color;
+
+    public void setColor(String color){
+        this.color = color;
+    }
+
+    ExcelPrinter(String color) {
+        this.color = color;
     }
 
     void printSemester(Semester semester, File filename) throws IOException {
@@ -187,7 +194,7 @@ class ExcelPrinter {
             style = (XSSFCellStyle) cell.getCellStyle();
         }
 
-        XSSFColor myColor = new XSSFColor(Color.decode("#ffd966"));
+        XSSFColor myColor = new XSSFColor(Color.decode(color));
         style.setFillForegroundColor(myColor);
         style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
         cell.setCellStyle(style);
