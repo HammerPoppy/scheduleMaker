@@ -36,10 +36,8 @@ public class ControllerMain {
     private File currentDestinationFolder;
     private File userDestinationFolder;
     // filePicker area
-    @FXML
-    private GridPane gpList;
-    @FXML
-    private ScrollPane spList;
+    public GridPane gpList;
+    public ScrollPane spList;
     private HashSet<File> fileList;
     private boolean listIsEmpty = true;
 
