@@ -34,10 +34,11 @@ public class PreView extends GridPane{
             if(!semester.getWeek(i).isEmpty()) {
                 VBox weekBox = new VBox();
 
-                weekBox.setPrefWidth(root.getPrefWidth());
                 fillWeek(weekBox, semester.getWeek(i));
 
                 ScrollPane scrolledContainer = new ScrollPane(weekBox);
+                scrolledContainer.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+                scrolledContainer.setFitToWidth(true);
                 Tab weekTab = new Tab();
                 weekTab.setText(ExcelPrinter.getWeekTitleString(semester.getWeek(i)));
                 weekTab.setContent(scrolledContainer);
