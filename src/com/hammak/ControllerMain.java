@@ -161,6 +161,7 @@ public class ControllerMain {
             FileParser.writeAllSemestersToFiles(semesters, currentDestinationFolder, progressBar.progressProperty());
             Platform.runLater(() -> {
                 bStart.setDisable(false);
+                progressBar.setProgress(0);
             });
         }).start();
 
