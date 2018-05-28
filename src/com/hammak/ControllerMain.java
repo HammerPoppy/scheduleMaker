@@ -193,12 +193,15 @@ public class ControllerMain {
 
     public void process() {
         bStart.setDisable(true);
+        bStart.setVisible(false);
+        progressBar.setVisible(true);
         new Thread(() -> {
             List<Semester> semesters = FileParser.readAllSemesters(fileList, progressBar.progressProperty());
             FileParser.writeAllSemestersToFiles(semesters, currentDestinationFolder, progressBar.progressProperty(), colorPicker.getValue().toString().substring(0, 8));
             Platform.runLater(() -> {
                 bStart.setDisable(false);
-                progressBar.setProgress(0);
+                bStart.setVisible(true);
+                progressBar.setVisible(false);
             });
         }).start();
 
