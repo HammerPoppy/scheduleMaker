@@ -159,7 +159,7 @@ public class ControllerMain {
         bStart.setDisable(true);
         new Thread(() -> {
             List<Semester> semesters = FileParser.readAllSemesters(fileList, progressBar.progressProperty());
-            FileParser.writeAllSemestersToFiles(semesters, currentDestinationFolder, progressBar.progressProperty(),"#" + Integer.toHexString(colorPicker.getValue().hashCode()));
+            FileParser.writeAllSemestersToFiles(semesters, currentDestinationFolder, progressBar.progressProperty(), colorPicker.getValue().toString().substring(0, 8));
             Platform.runLater(() -> {
                 bStart.setDisable(false);
                 progressBar.setProgress(0);
