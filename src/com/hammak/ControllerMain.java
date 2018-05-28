@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
@@ -41,6 +42,8 @@ public class ControllerMain {
     private ScrollPane spList;
     private HashSet<File> fileList;
     private boolean listIsEmpty = true;
+
+    public ColorPicker colorPicker;
 
     // core
     static int makeAllFiles(List<String> files, DoubleProperty fullProgress, DoubleProperty fileProgress) {
