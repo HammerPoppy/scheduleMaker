@@ -1,9 +1,10 @@
-.informationLabel{
+.informationLabel {
     -fx-text-fill: black;
     -fx-padding: 5px;
     -fx-font-size: 10pt;
 }
-.informationBox{
+
+.informationBox {
     -fx-border-color: black;
     -fx-border-style: solid;
     -fx-border-width: 1px;

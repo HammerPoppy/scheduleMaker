@@ -6,18 +6,22 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.*;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class PreView extends GridPane{
+public class PreView extends GridPane {
 
+    private static final String DAY_TITLE_COLOR_CODE = "#ffd966";
     @FXML
     TabPane preViewTable;
     @FXML
     GridPane root;
 
-    public PreView(){
+    public PreView() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PreView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -29,27 +33,8 @@ public class PreView extends GridPane{
             throw new RuntimeException(exception);
         }
     }
-    public void fill(Semester semester){
-        for(int i = 0; i < semester.getWeeksAmount(); i++) {
-            if(!semester.getWeek(i).isEmpty()) {
-                VBox weekBox = new VBox();
 
-                fillWeek(weekBox, semester.getWeek(i));
-
-                ScrollPane scrolledContainer = new ScrollPane(weekBox);
-                scrolledContainer.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-                scrolledContainer.setFitToWidth(true);
-                Tab weekTab = new Tab();
-                weekTab.setText(ExcelPrinter.getWeekTitleString(semester.getWeek(i)));
-                weekTab.setContent(scrolledContainer);
-                preViewTable.getTabs().add(weekTab);
-            }
-        }
-    }
-
-    private static final String DAY_TITLE_COLOR_CODE = "#ffd966";
-
-    public static void fillWeek(VBox weekBox, Week week){
+    public static void fillWeek(VBox weekBox, Week week) {
         for (int i = 0; i < week.daysAmount(); i++) {
             if (!week.getDay(i).isEmpty()) {
                 weekBox.getChildren().add(fillDay(week.getDay(i)));
@@ -57,7 +42,7 @@ public class PreView extends GridPane{
         }
     }
 
-    static GridPane fillDay(Day day){
+    static GridPane fillDay(Day day) {
         GridPane dayContainer = new GridPane();
         ColumnConstraints numberColumn = new ColumnConstraints();
         ColumnConstraints pairColumn = new ColumnConstraints();
@@ -73,7 +58,7 @@ public class PreView extends GridPane{
         teacherColumn.setPercentWidth(24);
         pairHallNumberColumn.setPercentWidth(7);
 
-        dayContainer.getColumnConstraints().setAll(numberColumn,pairColumn,subjectColumn,typeColumn,teacherColumn,pairHallNumberColumn);
+        dayContainer.getColumnConstraints().setAll(numberColumn, pairColumn, subjectColumn, typeColumn, teacherColumn, pairHallNumberColumn);
 
         Label titleLabel = new Label(ExcelPrinter.getdayTitle(day));
         titleLabel.getStyleClass().add("informationLabel");
@@ -81,17 +66,18 @@ public class PreView extends GridPane{
         title.setPrefHeight(20);
         title.getStyleClass().add("informationBox");
         title.setStyle("-fx-background-color: " + DAY_TITLE_COLOR_CODE);
-        dayContainer.add(title,0,0,6,1);
+        dayContainer.add(title, 0, 0, 6, 1);
 
 
         for (int i = 0; i < day.pairsAmount(); i++) {
             if (!day.getPair(i).isEmpty()) {
-                fillPair(day.getPair(i), dayContainer,i+1);
+                fillPair(day.getPair(i), dayContainer, i + 1);
             }
         }
         return dayContainer;
     }
-    static void fillPair(Pair pair, GridPane pairContainer,int rowIndex){
+
+    static void fillPair(Pair pair, GridPane pairContainer, int rowIndex) {
         Label pairNumber = new Label(pair.getNumber() + "");
         StackPane numberBox = new StackPane(pairNumber);
 
@@ -129,11 +115,29 @@ public class PreView extends GridPane{
         teacherBox.getStyleClass().add("informationBox");
         hallNumberBox.getStyleClass().add("informationBox");
 
-        pairContainer.add(numberBox,0,rowIndex);
-        pairContainer.add(pairTimeBox,1,rowIndex);
-        pairContainer.add(subjectBox,2,rowIndex);
-        pairContainer.add(typeBox,3,rowIndex);
-        pairContainer.add(teacherBox,4,rowIndex);
-        pairContainer.add(hallNumberBox,5,rowIndex);
+        pairContainer.add(numberBox, 0, rowIndex);
+        pairContainer.add(pairTimeBox, 1, rowIndex);
+        pairContainer.add(subjectBox, 2, rowIndex);
+        pairContainer.add(typeBox, 3, rowIndex);
+        pairContainer.add(teacherBox, 4, rowIndex);
+        pairContainer.add(hallNumberBox, 5, rowIndex);
+    }
+
+    public void fill(Semester semester) {
+        for (int i = 0; i < semester.getWeeksAmount(); i++) {
+            if (!semester.getWeek(i).isEmpty()) {
+                VBox weekBox = new VBox();
+
+                fillWeek(weekBox, semester.getWeek(i));
+
+                ScrollPane scrolledContainer = new ScrollPane(weekBox);
+                scrolledContainer.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+                scrolledContainer.setFitToWidth(true);
+                Tab weekTab = new Tab();
+                weekTab.setText(ExcelPrinter.getWeekTitleString(semester.getWeek(i)));
+                weekTab.setContent(scrolledContainer);
+                preViewTable.getTabs().add(weekTab);
+            }
+        }
     }
 }
