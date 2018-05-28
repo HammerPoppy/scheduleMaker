@@ -23,7 +23,7 @@ public class FileParser {
         fullProgress.set(0);
         for (File file : files) {
             semesters.add(readSemester(file));
-            fullProgress.add(1.0 / files.size());
+            fullProgress.set(fullProgress.getValue() +  1.0 / files.size());
         }
         return semesters;
     }
@@ -32,7 +32,7 @@ public class FileParser {
         fullProgress.set(0);
         for (int i = 0; i < semesters.size(); i++) {
             writeToFile(semesters.get(i), destinationFolder);
-            fullProgress.add(1.0 / semesters.size());
+            fullProgress.set(fullProgress.getValue() +  1.0 / semesters.size());
         }
 
     }
