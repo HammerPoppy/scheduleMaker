@@ -151,24 +151,9 @@ public class ControllerMain {
         setDestinationFolder();
     }
     public void process(){
-        new Thread(new Runnable() {
-
-
-            @Override
-            public void run() {
-
-                DoubleProperty progressProperty = progressBar.progressProperty();
-
-                progressProperty.addListener((observable, oldValue, newValue) -> {
-                    System.out.println(newValue);
-                    progressBar.setProgress(newValue.doubleValue());
-                });
-                progressProperty.setValue(0.5);
-                List<Semester> semesters = FileParser.readAllSemesters(fileList,progressProperty);
-                System.out.println("Loaded");
-                FileParser.writeAllSemestersToFiles(semesters,currentDestinationFolder,progressProperty);
-                System.out.println("wrote");
-            }
+        new Thread(() -> {
+            List<Semester> semesters = FileParser.readAllSemesters(fileList,progressBar.progressProperty());
+            FileParser.writeAllSemestersToFiles(semesters,currentDestinationFolder,progressBar.progressProperty());
         }).start();
 
     }
