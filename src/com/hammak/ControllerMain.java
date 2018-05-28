@@ -61,7 +61,6 @@ public class ControllerMain {
         }
 
         Semester semester = FileParser.readSemester(fileList.iterator().next());
-        preView.setColor("#" + Integer.toHexString(colorPicker.getValue().hashCode()));
         preView.fill(semester);
 
     }
@@ -141,6 +140,7 @@ public class ControllerMain {
     public void initialize() {
         fileList = new HashSet<>();
         colorPicker.setValue(Color.valueOf(DEFAULT_COLOR));
+        preView.setColor(DEFAULT_COLOR);
     }
 
     public void setCustomDestinationFolder(ActionEvent actionEvent) {
@@ -171,7 +171,11 @@ public class ControllerMain {
 
     }
     public void changeColor(){
-        preView.setColor("#" + Integer.toHexString(colorPicker.getValue().hashCode()));
+        Color color = colorPicker.getValue();
+        preView.setColor(String.format( "#%02X%02X%02X",
+                (int)( color.getRed() * 255 ),
+                (int)( color.getGreen() * 255 ),
+                (int)( color.getBlue() * 255 ) ));
         preView.repaint();
     }
 }
