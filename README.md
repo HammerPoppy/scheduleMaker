@@ -1,4 +1,4 @@
-# scheduleMaker (FIT schedule magic-machine)
+# scheduleMaker (FIT schedule magic-machine) (outdated)
 
 To use this incredibly rare thing just put .jar and your schedule .txt file near each other, then type into (Windows variant, I think Linux guys will get it easily) console (command prompt):
 #
