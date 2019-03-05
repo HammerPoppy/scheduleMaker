@@ -1,5 +1,7 @@
 # scheduleMaker (FIT schedule magic-machine) (outdated)
 
+![](https://user-images.githubusercontent.com/13766687/38901600-7f4c8596-42a5-11e8-92a3-aab7da9ccbf3.png)
+
 To use this incredibly rare thing just put .jar and your schedule .txt file near each other, then type into (Windows variant, I think Linux guys will get it easily) console (command prompt):
 #
 java -jar schedule.jar GПП-11.txt
