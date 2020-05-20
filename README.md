@@ -10,7 +10,7 @@ If your JRE is isnt in the PATH - REKT
 
 If you forgot -jar - REKT
 
-If your console is not in that directory that you need (aaaaah my English) - REKT
+If your console is not in that directory that you need - REKT
 
 Otherwise you'll get a brand new cool and very stylish schedule for your group, u'll become KING of the group 'cause only uuu have cool new colorful schedule and can give it only them who respect u. until someone reads this and do it and get his pretty COOL schedule. then u gonna cry... but don't worry! u have COOOOOOL schedule that u can use every day.
 
