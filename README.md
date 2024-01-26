@@ -1,4 +1,4 @@
-# scheduleMaker (FIT schedule magic-machine) (outdated)
+# scheduleMaker (early years FIT schedule converter)
 
 ![](https://user-images.githubusercontent.com/13766687/38901600-7f4c8596-42a5-11e8-92a3-aab7da9ccbf3.png)
 
